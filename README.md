@@ -1,5 +1,5 @@
 ![screenshot](example.jpg)
- "يرجى تنفيذ الشكل المطلوب باستخدام الرابط التالي من الـ API، مع التأكد من قراءة المتطلبات قبل بدء المهمة. test "
+ "يرجى تنفيذ الشكل المطلوب باستخدام  test الرابط التالي من الـ API، مع التأكد من قراءة المتطلبات قبل بدء المهمة."
 Api EndPpint= https://dashboard.eloroshop.com/eloroshopAppApi/v1/api/OptionGroups/Multi?productId=61
 
  
