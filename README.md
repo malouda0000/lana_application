@@ -41,6 +41,7 @@ The JSON structure consists of two main sections:
      - `increasingPrice`: The additional price for choosing this combination.  
 
 #### **Example Interpretation:**  
+#### **Example Interpretation:**  
 - The first possibility includes:  
   - **Size:** "كبير" (XL)  
   - **Color:** "احمر" (Red)  
