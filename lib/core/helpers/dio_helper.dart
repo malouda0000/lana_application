@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
-// import 'package:special_line_vendors/main.dart';
 import 'package:intl/intl.dart';
-import 'package:special_line_vendors/main.dart';
 
 class DioHelper {
   static const String baseUrl = "https://erp.specialline.info/v1/api/vendor";
@@ -66,9 +64,8 @@ class DioHelper {
       // },
     ));
 
-    _dio!.options.headers['Authorization'] =
-        // 'Bearer 842|kfJ1xYx8xejTn9Oz9YNWRZUsx46l13v09X60PKhk29dc2055';
-        'Bearer $globalCachedUserToken';
+    // _dio!.options.headers['Authorization'] =
+        // 'Bearer $globalCachedUserToken';
   }
 
   // #### login #### //

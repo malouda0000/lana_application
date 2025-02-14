@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:eloro_shop_uae/core/themes/app_colors.dart';
+import 'package:eloro_shop_uae/view/shared/widgets/app_button.dart';
 import 'package:flutter/material.dart';
-import 'package:special_line_vendors/core/themes/app_colors.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:special_line_vendors/view/shared/widgets/app_button.dart';
 
 class UserExperinceHelper {
 // final BuildContext theContext;
@@ -207,21 +206,21 @@ class UserExperinceHelper {
   }
 
   // #### custom network checker dialog #### //
-  showNetorkCheckerDialog({required final BuildContext theContext}) {
-    showCustomDialog(
-      theContext: theContext,
+  // showNetorkCheckerDialog({required final BuildContext theContext}) {
+  //   showCustomDialog(
+  //     theContext: theContext,
 
-      // dialogTitle: S.of(theContext ).error,
-      // dialogContent: S.of(theContext).checkNetwork,
-      dialogTitle: "error",
-      dialogContent: "check network",
+  //     // dialogTitle: S.of(theContext ).error,
+  //     // dialogContent: S.of(theContext).checkNetwork,
+  //     dialogTitle: "error",
+  //     dialogContent: "check network",
 
-      confirmButtonTitle: AppLocalizations.of(theContext)!.confirm,
-      onConfirm: () {
-        Navigator.of(theContext).pop();
-      },
-    );
-  }
+  //     confirmButtonTitle: AppLocalizations.of(theContext)!.confirm,
+  //     onConfirm: () {
+  //       Navigator.of(theContext).pop();
+  //     },
+  //   );
+  // }
 
   //  final int milliseconds;
   // VoidCallback action;

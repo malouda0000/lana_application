@@ -1,6 +1,6 @@
+import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:special_line_vendors/core/themes/app_colors.dart';
 
 ThemeData customLightTheme = ThemeData(
   useMaterial3: true,

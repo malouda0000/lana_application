@@ -1,9 +1,4 @@
-import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:special_line_vendors/core/constants/app_constants.dart';
-import 'package:special_line_vendors/core/helpers/cache_helper.dart';
-import 'package:special_line_vendors/main.dart';
 
 // changeLocal()async {
 // Locale appLocal = await CacheHelper.getData(key: 'local');
@@ -36,12 +31,14 @@ import 'package:special_line_vendors/main.dart';
 //   // }
 // }
 
-cachLocal({required String langCode}) async {
-  // Locale myLocale = Locale(langCode);
+import 'package:eloro_shop_uae/core/helpers/cache_helper.dart';
 
-  // Get.updateLocale(myLocale);
+// cachLocal({required String langCode}) async {
+//   // Locale myLocale = Locale(langCode);
 
-  await CacheHelper.setData(key: AppConstants.cachedUserLang, value: langCode);
+//   // Get.updateLocale(myLocale);
 
-  globalCachedUserLang = langCode; // RestartWidget.restartApp(context);
-}
+//   await CacheHelper.setData(key: AppConstants.cachedUserLang, value: langCode);
+
+//   globalCachedUserLang = langCode; // RestartWidget.restartApp(context);
+// }

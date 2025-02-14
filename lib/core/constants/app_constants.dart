@@ -1,9 +1,6 @@
 // import 'package:cached_network_image/cached_network_image.dart';
+import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:special_line_vendors/core/themes/app_colors.dart';
-import 'package:special_line_vendors/core/themes/bloc/theme_bloc.dart';
-import 'package:special_line_vendors/main.dart';
 
 class AppConstants {
   static const double theDefBaddingTenPixl = 10;
@@ -104,9 +101,9 @@ class AppConstants {
       "https://thispersondoesnotexist.com/";
   // static const String cachedRandomeImage = "http://74.208.189.16:3000/images/categories/beauty/beauty.png";
 
-  static bool isArabic() {
-    return (globalCachedUserLang == null || globalCachedUserLang == 'en')
-        ? false
-        : true;
-  }
+  // static bool isArabic() {
+  //   return (globalCachedUserLang == null || globalCachedUserLang == 'en')
+  //       ? false
+  //       : true;
+  // }
 }

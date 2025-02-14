@@ -1,10 +1,7 @@
-// ignore_for_file: unnecessary_null_in_if_null_operators
-
 import 'dart:convert';
 
+import 'package:eloro_shop_uae/core/constants/app_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:special_line_vendors/core/constants/app_constants.dart';
-import 'package:special_line_vendors/main.dart';
 
 class CacheHelper {
   static SharedPreferences? sharedPreferences;
@@ -15,15 +12,15 @@ class CacheHelper {
 
   static init() async {
     sharedPreferences = await SharedPreferences.getInstance();
-    globalCachedUserToken = await getData(key: AppConstants.cachedUserToken);
-    globalCachedUserLang = await getData(key: AppConstants.cachedUserLang);
-    globalCachedArabicUserName =
-        await getData(key: AppConstants.cachedArabicUserName);
-    globalCachedEnglishUserName =
-        await getData(key: AppConstants.cachedEnglishUserName);
-    globalCachedUserID = await getData(key: AppConstants.cachedUserID);
-    globalCachedUserPhoneNum =
-        await getData(key: AppConstants.cachedUserPhonNum);
+    // globalCachedUserToken = await getData(key: AppConstants.cachedUserToken);
+    // globalCachedUserLang = await getData(key: AppConstants.cachedUserLang);
+    // globalCachedArabicUserName =
+    //     await getData(key: AppConstants.cachedArabicUserName);
+    // globalCachedEnglishUserName =
+    //     await getData(key: AppConstants.cachedEnglishUserName);
+    // globalCachedUserID = await getData(key: AppConstants.cachedUserID);
+    // globalCachedUserPhoneNum =
+    //     await getData(key: AppConstants.cachedUserPhonNum);
 
     // print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu :${globalUserToken}");
 
