@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dio/io.dart';
 import 'package:intl/intl.dart';
 
 class DioHelper {
@@ -22,14 +25,14 @@ class DioHelper {
       receiveDataWhenStatusError: true,
       validateStatus: (status) => true,
       connectTimeout: const Duration(seconds: 10),
-      // headers: {}
-      // dio.options.headers['Authorization'] = 'Bearer $userToken';
-      // headers:  <String, dynamic> {   "Authorization" :  'Bearer $userToken' }
-      // headers: <String, dynamic>{
-      // "Authorization": 'Bearer $globalUserToken'
-
-      // },
-    ));
+    ))
+    ..httpClientAdapter = IOHttpClientAdapter(
+      createHttpClient: () {
+        final client = HttpClient();
+        client.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+        return client;
+      },
+    );
 
     // _dio!.options.headers['Authorization'] =
     // 'Bearer $globalCachedUserToken';
