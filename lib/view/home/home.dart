@@ -51,141 +51,214 @@ class _HomeScreenState extends State<HomeScreen> {
 
               return Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Color Selection
-                    Text(
-                      colorGroup.optionGroupNameEn ?? "Colors",
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppConstants.theDefBaddingFifteenPixl,
-                        vertical: AppConstants.theDefBaddingFifteenPixl,
+                child: SingleChildScrollView(
+                  // primary: true,
+
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "The Active Option",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.darkBgColor,
+                        ),
                       ),
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      child: Row(
-                        children: colorGroup.options!.map((option) {
-                          return InkWell(
-                            onTap: () {
-                              context.read<HomeBloc>().add(SelectOption(
-                                    groupId: colorGroup.optionGroupId!,
-                                    optionId: option.optionId!,
-                                  ));
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 8,
-                              ),
-                              height: 80,
-                              width: 80,
+
+                      AppConstants.emptySpaceFifteenPixl,
+
+                      Container(
+                        height: 350,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          borderRadius: AppConstants.theNewBorderRadiusTenPX,
+                          // boxShadow: AppConstants.theBoxShdow,
+                          border: Border.all(
+                            color: AppColors.greyColor,
+                          ),
+                          color: Theme.of(context).cardColor,
+                        ),
+                        child: Column(
+                          children: [
+                            Expanded(
+                                child: Container(
+                              height: double.infinity,
+                              width: double.infinity,
                               decoration: BoxDecoration(
-                                borderRadius:
-                                    AppConstants.theNewBorderRadiusTenPX,
-                                color: hexToColor(option.colorHash),
-                                // border: Border.all(
-                                //   color: AppColors.greyColor,
-                                // ),
+                                //  color: hexToColor(option.colorHash)  ,
+
+                                color: Colors.amber,
+
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10)),
                               ),
-                              child: Column(
-                                children: [
-                                  Radio<int>(
-                                    value: option.optionId!,
-                                    groupValue: state.selectedOptions[
-                                        colorGroup.optionGroupId],
-                                    onChanged: (value) {
-                                      context.read<HomeBloc>().add(SelectOption(
-                                            groupId: colorGroup.optionGroupId!,
-                                            optionId: option.optionId!,
-                                          ));
-                                    },
-                                    activeColor: AppColors.mainColor,
+                            )),
+                            SizedBox(
+                              height: 70,
+                              width: double.infinity,
+                              child: Center(
+                                child: Text(
+                                  "Colors name",
+                                  // textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkBgColor,
                                   ),
-                                  Text(option.nameEn ?? "Option"),
-                                ],
+                                ),
                               ),
-                            ),
-                          );
-                        }).toList(),
+                            )
+                          ],
+                        ),
                       ),
-                    ),
 
-                    const SizedBox(height: 16.0),
+                      AppConstants.emptySpaceFifteenPixl,
 
-                    // Size Selection (Updated dynamically based on color selection)
-                    Text(
-                      sizeGroup.optionGroupNameEn ?? "Sizes",
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppConstants.theDefBaddingFifteenPixl,
-                        vertical: AppConstants.theDefBaddingFifteenPixl,
+                      // Color Selection
+                      Text(
+                        colorGroup.optionGroupNameEn ?? "Colors",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.darkBgColor,
+                        ),
                       ),
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      child: Row(
-                        children: sizeGroup.options!.map((option) {
-                          final isEnabled = state.filteredAvailableOptions.any(
-                              (pg) =>
-                                  pg.optionGroupId == sizeGroup.optionGroupId &&
-                                  pg.optionId == option.optionId);
-                          return InkWell(
-                            onTap: () {
-                              if (isEnabled) {
+                      SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstants.theDefBaddingFifteenPixl,
+                          vertical: AppConstants.theDefBaddingFifteenPixl,
+                        ),
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        child: Row(
+                          children: colorGroup.options!.map((option) {
+                            return InkWell(
+                              onTap: () {
                                 context.read<HomeBloc>().add(SelectOption(
-                                      groupId: sizeGroup.optionGroupId,
-                                      optionId: option.optionId,
+                                      groupId: colorGroup.optionGroupId!,
+                                      optionId: option.optionId!,
                                     ));
-                              }
-                            },
-                            child: Container(
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 8,
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                ),
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      AppConstants.theNewBorderRadiusTenPX,
+                                  color: hexToColor(option.colorHash),
+                                  // border: Border.all(
+                                  //   color: AppColors.greyColor,
+                                  // ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Radio<int>(
+                                      value: option.optionId!,
+                                      groupValue: state.selectedOptions[
+                                          colorGroup.optionGroupId],
+                                      onChanged: (value) {
+                                        context
+                                            .read<HomeBloc>()
+                                            .add(SelectOption(
+                                              groupId:
+                                                  colorGroup.optionGroupId!,
+                                              optionId: option.optionId!,
+                                            ));
+                                      },
+                                      activeColor: AppColors.mainColor,
+                                    ),
+                                    Text(option.nameEn ?? "Option"),
+                                  ],
+                                ),
                               ),
-                              height: 80,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                borderRadius:
-                                    AppConstants.theNewBorderRadiusTenPX,
-                                boxShadow: AppConstants.theBoxShdow,
-                                color: Theme.of(context).cardColor,
-                                // border: Border.all(
-                                //   color:   AppColors.greyColor,
-                                // ),
-                              ),
-                              child: Column(
-                                children: [
-                                  Radio<int>(
-                                    value: option.optionId,
-                                    groupValue: state.selectedOptions[
-                                        sizeGroup.optionGroupId],
-                                    onChanged: isEnabled
-                                        ? (value) {
-                                            context
-                                                .read<HomeBloc>()
-                                                .add(SelectOption(
-                                                  groupId:
-                                                      sizeGroup.optionGroupId!,
-                                                  optionId: option.optionId!,
-                                                ));
-                                          }
-                                        : null,
-                                    activeColor: AppColors.mainColor,
-                                  ),
-                                  Text(option.nameEn ?? "Option"),
-                                ],
-                              ),
-                            ),
-                          );
-                        }).toList(),
+                            );
+                          }).toList(),
+                        ),
                       ),
-                    ),
-                  ],
+
+                      const SizedBox(height: 16.0),
+
+                      // Size Selection (Updated dynamically based on color selection)
+                      Text(
+                        sizeGroup.optionGroupNameEn ?? "Sizes",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.darkBgColor,
+                        ),
+                      ),
+                      SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: AppConstants.theDefBaddingFifteenPixl,
+                          vertical: AppConstants.theDefBaddingFifteenPixl,
+                        ),
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        child: Row(
+                          children: sizeGroup.options!.map((option) {
+                            final isEnabled = state.filteredAvailableOptions
+                                .any((pg) =>
+                                    pg.optionGroupId ==
+                                        sizeGroup.optionGroupId &&
+                                    pg.optionId == option.optionId);
+                            return InkWell(
+                              onTap: () {
+                                if (isEnabled) {
+                                  context.read<HomeBloc>().add(SelectOption(
+                                        groupId: sizeGroup.optionGroupId,
+                                        optionId: option.optionId,
+                                      ));
+                                }
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                ),
+                                height: 80,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      AppConstants.theNewBorderRadiusTenPX,
+                                  boxShadow: AppConstants.theBoxShdow,
+                                  color: Theme.of(context).cardColor,
+                                  // border: Border.all(
+                                  //   color:   AppColors.greyColor,
+                                  // ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    Radio<int>(
+                                      value: option.optionId,
+                                      groupValue: state.selectedOptions[
+                                          sizeGroup.optionGroupId],
+                                      onChanged: isEnabled
+                                          ? (value) {
+                                              context
+                                                  .read<HomeBloc>()
+                                                  .add(SelectOption(
+                                                    groupId: sizeGroup
+                                                        .optionGroupId!,
+                                                    optionId: option.optionId!,
+                                                  ));
+                                            }
+                                          : null,
+                                      activeColor: AppColors.mainColor,
+                                    ),
+                                    Text(option.nameEn ?? "Option"),
+                                  ],
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             } else if (state is HomeError) {
