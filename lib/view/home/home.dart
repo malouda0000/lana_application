@@ -40,8 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
             } else if (state is HomeLoaded) {
               return ListView.builder(
                 padding: const EdgeInsets.all(16.0),
+
                 itemCount: state.optionGroups.length,
                 itemBuilder: (context, index) {
+
                   final group = state.optionGroups[index];
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,5 +87,4 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-  }
-}
+  }}

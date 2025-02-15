@@ -49,8 +49,8 @@ abstract class HomeState {}
 class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 class HomeLoaded extends HomeState {
-  final List<OptionGroupsLiMoudel> optionGroups;
-  final List<AvailableOptionLisMoudel> availableOptions;
+  final List<OptionGroupsLi> optionGroups;
+  final List<AvailableOptionLis> availableOptions;
   final Map<int, int> selectedOptions;
   HomeLoaded({required this.optionGroups, required this.availableOptions, required this.selectedOptions});
 }

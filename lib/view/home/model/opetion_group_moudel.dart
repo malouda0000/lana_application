@@ -1,170 +1,14 @@
-// class OptionGroupListModel {
-//     OpetionDataModel? data;
-
-//     OptionGroupListModel({
-//         this.data,
-//     });
-
-//     OptionGroupListModel copyWith({
-//         OpetionDataModel? data,
-//     }) => 
-//         OptionGroupListModel(
-//             data: data ?? this.data,
-//         );
-// }
-
-// class OpetionDataModel {
-//     List<OptionGroupsLi>? optionGroupsLis;
-//     AvailableOptionLisModel? availableOptionLis;
-
-//     OpetionDataModel({
-//         this.optionGroupsLis,
-//         this.availableOptionLis,
-//     });
-
-//     OpetionDataModel copyWith({
-//         List<OptionGroupsLi>? optionGroupsLis,
-//         AvailableOptionLisModel? availableOptionLis,
-//     }) => 
-//         OpetionDataModel(
-//             optionGroupsLis: optionGroupsLis ?? this.optionGroupsLis,
-//             availableOptionLis: availableOptionLis ?? this.availableOptionLis,
-//         );
-// }
-
-// class AvailableOptionLisModel {
-//     List<PossibilityModel>? possibilities;
-
-//     AvailableOptionLisModel({
-//         this.possibilities,
-//     });
-
-//     AvailableOptionLisModel copyWith({
-//         List<PossibilityModel>? possibilities,
-//     }) => 
-//         AvailableOptionLisModel(
-//             possibilities: possibilities ?? this.possibilities,
-//         );
-// }
-
-// class PossibilityModel {
-//     List<PossibilityGroupModel>? possibilityGroups;
-//     int? quantity;
-//     int? increasingPrice;
-
-//     PossibilityModel({
-//         this.possibilityGroups,
-//         this.quantity,
-//         this.increasingPrice,
-//     });
-
-//     PossibilityModel copyWith({
-//         List<PossibilityGroupModel>? possibilityGroups,
-//         int? quantity,
-//         int? increasingPrice,
-//     }) => 
-//         PossibilityModel(
-//             possibilityGroups: possibilityGroups ?? this.possibilityGroups,
-//             quantity: quantity ?? this.quantity,
-//             increasingPrice: increasingPrice ?? this.increasingPrice,
-//         );
-// }
-
-// class PossibilityGroupModel {
-//     int? optionGroupId;
-//     int? optionId;
-
-//     PossibilityGroupModel({
-//         this.optionGroupId,
-//         this.optionId,
-//     });
-
-//     PossibilityGroupModel copyWith({
-//         int? optionGroupId,
-//         int? optionId,
-//     }) => 
-//         PossibilityGroupModel(
-//             optionGroupId: optionGroupId ?? this.optionGroupId,
-//             optionId: optionId ?? this.optionId,
-//         );
-// }
-
-// class OptionGroupsLi {
-//     int? optionGroupId;
-//     bool? isColor;
-//     String? optionGroupName;
-//     String? optionGroupNameEn;
-//     bool? isMain;
-//     List<OptionModel>? options;
-
-//     OptionGroupsLi({
-//         this.optionGroupId,
-//         this.isColor,
-//         this.optionGroupName,
-//         this.optionGroupNameEn,
-//         this.isMain,
-//         this.options,
-//     });
-
-//     OptionGroupsLi copyWith({
-//         int? optionGroupId,
-//         bool? isColor,
-//         String? optionGroupName,
-//         String? optionGroupNameEn,
-//         bool? isMain,
-//         List<OptionModel>? options,
-//     }) => 
-//         OptionGroupsLi(
-//             optionGroupId: optionGroupId ?? this.optionGroupId,
-//             isColor: isColor ?? this.isColor,
-//             optionGroupName: optionGroupName ?? this.optionGroupName,
-//             optionGroupNameEn: optionGroupNameEn ?? this.optionGroupNameEn,
-//             isMain: isMain ?? this.isMain,
-//             options: options ?? this.options,
-//         );
-// }
-
-// class OptionModel {
-//     int? optionId;
-//     String? name;
-//     String? nameEn;
-//     String? colorHash;
-
-//     OptionModel({
-//         this.optionId,
-//         this.name,
-//         this.nameEn,
-//         this.colorHash,
-//     });
-
-//     OptionModel copyWith({
-//         int? optionId,
-//         String? name,
-//         String? nameEn,
-//         String? colorHash,
-//     }) => 
-//         OptionModel(
-//             optionId: optionId ?? this.optionId,
-//             name: name ?? this.name,
-//             nameEn: nameEn ?? this.nameEn,
-//             colorHash: colorHash ?? this.colorHash,
-//         );
-// }
-
-
-
-
 import 'dart:convert';
 
 class OptionGroupListModel {
-    final OpetionsDataMoudel? data;
+    Data data;
 
     OptionGroupListModel({
-        this.data,
+        required this.data,
     });
 
     OptionGroupListModel copyWith({
-        OpetionsDataMoudel? data,
+        Data? data,
     }) => 
         OptionGroupListModel(
             data: data ?? this.data,
@@ -175,136 +19,136 @@ class OptionGroupListModel {
     String toRawJson() => json.encode(toJson());
 
     factory OptionGroupListModel.fromJson(Map<String, dynamic> json) => OptionGroupListModel(
-        data: json["data"] == null ? null : OpetionsDataMoudel.fromJson(json["data"]),
+        data: Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "data": data?.toJson(),
+        "data": data.toJson(),
     };
 }
 
-class OpetionsDataMoudel {
-    final List<OptionGroupsLiMoudel>? optionGroupsLis;
-    final OptionGroupsLiMoudel? availableOptionLis;
+class Data {
+    List<OptionGroupsLi> optionGroupsLis;
+    AvailableOptionLis availableOptionLis;
 
-    OpetionsDataMoudel({
-        this.optionGroupsLis,
-        this.availableOptionLis,
+    Data({
+        required this.optionGroupsLis,
+        required this.availableOptionLis,
     });
 
-    OpetionsDataMoudel copyWith({
-        List<OptionGroupsLiMoudel>? optionGroupsLis,
-        OptionGroupsLiMoudel? availableOptionLis,
+    Data copyWith({
+        List<OptionGroupsLi>? optionGroupsLis,
+        AvailableOptionLis? availableOptionLis,
     }) => 
-        OpetionsDataMoudel(
+        Data(
             optionGroupsLis: optionGroupsLis ?? this.optionGroupsLis,
             availableOptionLis: availableOptionLis ?? this.availableOptionLis,
         );
 
-    factory OpetionsDataMoudel.fromRawJson(String str) => OpetionsDataMoudel.fromJson(json.decode(str));
+    factory Data.fromRawJson(String str) => Data.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
-    factory OpetionsDataMoudel.fromJson(Map<String, dynamic> json) => OpetionsDataMoudel(
-        optionGroupsLis: json["optionGroupsLis"] == null ? [] : List<OptionGroupsLiMoudel>.from(json["optionGroupsLis"]!.map((x) => OptionGroupsLiMoudel.fromJson(x))),
-        availableOptionLis: json["availableOptionLis"] == null ? null : OptionGroupsLiMoudel.fromJson(json["availableOptionLis"]),
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
+        optionGroupsLis: List<OptionGroupsLi>.from(json["optionGroupsLis"].map((x) => OptionGroupsLi.fromJson(x))),
+        availableOptionLis: AvailableOptionLis.fromJson(json["availableOptionLis"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "optionGroupsLis": optionGroupsLis == null ? [] : List<dynamic>.from(optionGroupsLis!.map((x) => x.toJson())),
-        "availableOptionLis": availableOptionLis?.toJson(),
+        "optionGroupsLis": List<dynamic>.from(optionGroupsLis.map((x) => x.toJson())),
+        "availableOptionLis": availableOptionLis.toJson(),
     };
 }
 
-class AvailableOptionLisMoudel {
-    final List<PossibilityMoudel>? possibilities;
+class AvailableOptionLis {
+    List<Possibility> possibilities;
 
-    AvailableOptionLisMoudel({
-        this.possibilities,
+    AvailableOptionLis({
+        required this.possibilities,
     });
 
-    AvailableOptionLisMoudel copyWith({
-        List<PossibilityMoudel>? possibilities,
+    AvailableOptionLis copyWith({
+        List<Possibility>? possibilities,
     }) => 
-        AvailableOptionLisMoudel(
+        AvailableOptionLis(
             possibilities: possibilities ?? this.possibilities,
         );
 
-    factory AvailableOptionLisMoudel.fromRawJson(String str) => AvailableOptionLisMoudel.fromJson(json.decode(str));
+    factory AvailableOptionLis.fromRawJson(String str) => AvailableOptionLis.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
-    factory AvailableOptionLisMoudel.fromJson(Map<String, dynamic> json) => AvailableOptionLisMoudel(
-        possibilities: json["possibilities"] == null ? [] : List<PossibilityMoudel>.from(json["possibilities"]!.map((x) => PossibilityMoudel.fromJson(x))),
+    factory AvailableOptionLis.fromJson(Map<String, dynamic> json) => AvailableOptionLis(
+        possibilities: List<Possibility>.from(json["possibilities"].map((x) => Possibility.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "possibilities": possibilities == null ? [] : List<dynamic>.from(possibilities!.map((x) => x.toJson())),
+        "possibilities": List<dynamic>.from(possibilities.map((x) => x.toJson())),
     };
 }
 
-class PossibilityMoudel {
-    final List<PossibilityGroupMoudel>? possibilityGroups;
-    final int? quantity;
-    final int? increasingPrice;
+class Possibility {
+    List<PossibilityGroup> possibilityGroups;
+    int quantity;
+    double increasingPrice;
 
-    PossibilityMoudel({
-        this.possibilityGroups,
-        this.quantity,
-        this.increasingPrice,
+    Possibility({
+        required this.possibilityGroups,
+        required this.quantity,
+        required this.increasingPrice,
     });
 
-    PossibilityMoudel copyWith({
-        List<PossibilityGroupMoudel>? possibilityGroups,
+    Possibility copyWith({
+        List<PossibilityGroup>? possibilityGroups,
         int? quantity,
-        int? increasingPrice,
+        double? increasingPrice,
     }) => 
-        PossibilityMoudel(
+        Possibility(
             possibilityGroups: possibilityGroups ?? this.possibilityGroups,
             quantity: quantity ?? this.quantity,
             increasingPrice: increasingPrice ?? this.increasingPrice,
         );
 
-    factory PossibilityMoudel.fromRawJson(String str) => PossibilityMoudel.fromJson(json.decode(str));
+    factory Possibility.fromRawJson(String str) => Possibility.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
-    factory PossibilityMoudel.fromJson(Map<String, dynamic> json) => PossibilityMoudel(
-        possibilityGroups: json["possibilityGroups"] == null ? [] : List<PossibilityGroupMoudel>.from(json["possibilityGroups"]!.map((x) => PossibilityGroupMoudel.fromJson(x))),
+    factory Possibility.fromJson(Map<String, dynamic> json) => Possibility(
+        possibilityGroups: List<PossibilityGroup>.from(json["possibilityGroups"].map((x) => PossibilityGroup.fromJson(x))),
         quantity: json["quantity"],
         increasingPrice: json["increasingPrice"],
     );
 
     Map<String, dynamic> toJson() => {
-        "possibilityGroups": possibilityGroups == null ? [] : List<dynamic>.from(possibilityGroups!.map((x) => x.toJson())),
+        "possibilityGroups": List<dynamic>.from(possibilityGroups.map((x) => x.toJson())),
         "quantity": quantity,
         "increasingPrice": increasingPrice,
     };
 }
 
-class PossibilityGroupMoudel {
-    final int? optionGroupId;
-    final int? optionId;
+class PossibilityGroup {
+    int optionGroupId;
+    int optionId;
 
-    PossibilityGroupMoudel({
-        this.optionGroupId,
-        this.optionId,
+    PossibilityGroup({
+        required this.optionGroupId,
+        required this.optionId,
     });
 
-    PossibilityGroupMoudel copyWith({
+    PossibilityGroup copyWith({
         int? optionGroupId,
         int? optionId,
     }) => 
-        PossibilityGroupMoudel(
+        PossibilityGroup(
             optionGroupId: optionGroupId ?? this.optionGroupId,
             optionId: optionId ?? this.optionId,
         );
 
-    factory PossibilityGroupMoudel.fromRawJson(String str) => PossibilityGroupMoudel.fromJson(json.decode(str));
+    factory PossibilityGroup.fromRawJson(String str) => PossibilityGroup.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
-    factory PossibilityGroupMoudel.fromJson(Map<String, dynamic> json) => PossibilityGroupMoudel(
+    factory PossibilityGroup.fromJson(Map<String, dynamic> json) => PossibilityGroup(
         optionGroupId: json["optionGroupId"],
         optionId: json["optionId"],
     );
@@ -315,32 +159,32 @@ class PossibilityGroupMoudel {
     };
 }
 
-class OptionGroupsLiMoudel {
-    final int? optionGroupId;
-    final bool? isColor;
-    final String? optionGroupName;
-    final String? optionGroupNameEn;
-    final bool? isMain;
-    final List<OptionMoudel>? options;
+class OptionGroupsLi {
+    int optionGroupId;
+    bool isColor;
+    String optionGroupName;
+    String optionGroupNameEn;
+    bool isMain;
+    List<Option> options;
 
-    OptionGroupsLiMoudel({
-        this.optionGroupId,
-        this.isColor,
-        this.optionGroupName,
-        this.optionGroupNameEn,
-        this.isMain,
-        this.options,
+    OptionGroupsLi({
+        required this.optionGroupId,
+        required this.isColor,
+        required this.optionGroupName,
+        required this.optionGroupNameEn,
+        required this.isMain,
+        required this.options,
     });
 
-    OptionGroupsLiMoudel copyWith({
+    OptionGroupsLi copyWith({
         int? optionGroupId,
         bool? isColor,
         String? optionGroupName,
         String? optionGroupNameEn,
         bool? isMain,
-        List<OptionMoudel>? options,
+        List<Option>? options,
     }) => 
-        OptionGroupsLiMoudel(
+        OptionGroupsLi(
             optionGroupId: optionGroupId ?? this.optionGroupId,
             isColor: isColor ?? this.isColor,
             optionGroupName: optionGroupName ?? this.optionGroupName,
@@ -349,17 +193,17 @@ class OptionGroupsLiMoudel {
             options: options ?? this.options,
         );
 
-    factory OptionGroupsLiMoudel.fromRawJson(String str) => OptionGroupsLiMoudel.fromJson(json.decode(str));
+    factory OptionGroupsLi.fromRawJson(String str) => OptionGroupsLi.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
-    factory OptionGroupsLiMoudel.fromJson(Map<String, dynamic> json) => OptionGroupsLiMoudel(
+    factory OptionGroupsLi.fromJson(Map<String, dynamic> json) => OptionGroupsLi(
         optionGroupId: json["optionGroupId"],
         isColor: json["isColor"],
         optionGroupName: json["optionGroupName"],
         optionGroupNameEn: json["optionGroupNameEn"],
         isMain: json["isMain"],
-        options: json["options"] == null ? [] : List<OptionMoudel>.from(json["options"]!.map((x) => OptionMoudel.fromJson(x))),
+        options: List<Option>.from(json["options"].map((x) => Option.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -368,41 +212,41 @@ class OptionGroupsLiMoudel {
         "optionGroupName": optionGroupName,
         "optionGroupNameEn": optionGroupNameEn,
         "isMain": isMain,
-        "options": options == null ? [] : List<dynamic>.from(options!.map((x) => x.toJson())),
+        "options": List<dynamic>.from(options.map((x) => x.toJson())),
     };
 }
 
-class OptionMoudel {
-    final int? optionId;
-    final String? name;
-    final String? nameEn;
-    final String? colorHash;
+class Option {
+    int optionId;
+    String name;
+    String nameEn;
+    String colorHash;
 
-    OptionMoudel({
-        this.optionId,
-        this.name,
-        this.nameEn,
-        this.colorHash,
+    Option({
+        required this.optionId,
+        required this.name,
+        required this.nameEn,
+        required this.colorHash,
     });
 
-    OptionMoudel copyWith({
+    Option copyWith({
         int? optionId,
         String? name,
         String? nameEn,
         String? colorHash,
     }) => 
-        OptionMoudel(
+        Option(
             optionId: optionId ?? this.optionId,
             name: name ?? this.name,
             nameEn: nameEn ?? this.nameEn,
             colorHash: colorHash ?? this.colorHash,
         );
 
-    factory OptionMoudel.fromRawJson(String str) => OptionMoudel.fromJson(json.decode(str));
+    factory Option.fromRawJson(String str) => Option.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
-    factory OptionMoudel.fromJson(Map<String, dynamic> json) => OptionMoudel(
+    factory Option.fromJson(Map<String, dynamic> json) => Option(
         optionId: json["optionId"],
         name: json["name"],
         nameEn: json["nameEn"],
