@@ -2,48 +2,15 @@ import 'package:dio/dio.dart';
 import 'package:intl/intl.dart';
 
 class DioHelper {
-  static const String baseUrl = "https://erp.specialline.info/v1/api/vendor";
+  static const String baseUrl = "https://dashboard.eloroshop.com/eloroshopAppApi/v1/api";
 
   static const String logInUrl = '/login';
   static const String signUpUrl = '/register';
   static const String forgotPasswordUrl = '/forgot-password';
   static const String verifyOTPUrl = '/verify-otp';
   static const String resetPasswordUrl = '/reset-password';
-  static const String getVendorsCompaniesUrl = '/get_vendor_companies';
   static const String getVendorsProfileUrl = '/profile';
-
-// #### Atif code #### //
-
-  static const String getShipmentSummaryUrl =
-      "$baseUrl/company/get_shipment_summary/";
-
-  static const String getStatusListUrl = "$baseUrl/company/get_status_list";
-
-  static const String getEmirateListUrl = "$baseUrl/company/get_emirate_list";
-
-  static const String getShipmentsUrl = "$baseUrl/company/get_shipments";
-
-  static const String searchShipmentsUrl = "$baseUrl/company/search_shipments";
-
-  static const String getShipmentDetailsUrl =
-      "$baseUrl/company/get_shipment_details/";
-
-  static const String getProductsUrl = "$baseUrl/company/stock/get_products/";
-
-  static const String getProductHistoryUrl =
-      "$baseUrl/company/stock/get_product/history/";
-
-  static const String getPaymentsUrl =
-      "$baseUrl/company/payments/get_payments/";
-
-  static const String getServicesUrl = "$baseUrl/company/requests/get_services";
-  static const String makeRequestUrl = "$baseUrl/company/requests/make_request";
-
-  static const String getRequestsUrl =
-      "$baseUrl/company/requests/get_requests/";
-
-  static const String getShipmentTrackingUrl =
-      "$baseUrl/company/get_shipment_tracking/";
+  static const String getOptionGroupUrl = '/OptionGroups/Multi?productId=61';
 
   static Dio? _dio;
 
@@ -65,7 +32,7 @@ class DioHelper {
     ));
 
     // _dio!.options.headers['Authorization'] =
-        // 'Bearer $globalCachedUserToken';
+    // 'Bearer $globalCachedUserToken';
   }
 
   // #### login #### //
@@ -134,22 +101,22 @@ class DioHelper {
       throw Exception('Failed to login: $e');
     }
   }
+
 // #### forgot password #### //
-static Future<Response> forgotPassword({required String email}) async {
-  try {
-    final response = await _dio!.post(
-      forgotPasswordUrl, // Define your endpoint URL
-      data: {
-        "email": email,
-      },
-    );
+  static Future<Response> forgotPassword({required String email}) async {
+    try {
+      final response = await _dio!.post(
+        forgotPasswordUrl, // Define your endpoint URL
+        data: {
+          "email": email,
+        },
+      );
 
-    return response;
-  } catch (e) {
-    throw Exception('Failed to send forgot password request: $e');
+      return response;
+    } catch (e) {
+      throw Exception('Failed to send forgot password request: $e');
+    }
   }
-}
-
 
   // #### genral dio getData #### //
   static Future<Response> getData({
@@ -212,29 +179,6 @@ static Future<Response> forgotPassword({required String email}) async {
     }
   }
 
-  //  // #### sendNotifications #### //
-  // static Future<Response> sendNotificatoin({
-  //   //required String url,
-  //   //Map<String, dynamic>? queryParameters,
-  //   required Map<String, dynamic> data,
-  //   // String lang = "en",
-  //   //String? token,
-  // }) async {
-  //   dio!.options.headers = {
-  //     // 'lang': lang,
-  //     'Content-Type': 'application/json',
-  //     'Authorization':
-  //         'key=${firebase key}',
-  //   };
-  //   print('data => $data');
-  //   // print('url->$url\n data->$data');
-  //   return await dio!.post(
-  //     'https://fcm.googleapis.com/fcm/send',
-  //     //queryParameters: queryParameters,
-  //     data: data,
-  //   );
-  // }
-
   // #### genral dio putData #### //
   static Future<Response> putData({
     required String url,
@@ -288,266 +232,18 @@ static Future<Response> forgotPassword({required String email}) async {
     );
   }
 
-  static Future<Response> getShipmentSummary(
-      {required int companyId, String? date}) async {
+
+// #### fetchOptions #### //
+  static Future<Response> fetchOptions() async {
     try {
-      final response = await _dio!.get(
-        '$getShipmentSummaryUrl$companyId',
-        queryParameters: {
-          if (date != null) 'date': date,
-        },
-      );
+   
+    final response = await _dio!.get(getOptionGroupUrl);
+   print(response);
       return response;
     } catch (e) {
-      throw Exception('Failed to get shipment summary: $e');
-    }
-  }
-
-  static Future<Response> getStatusList() async {
-    try {
-      final response = await _dio!.get(getStatusListUrl);
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get status list: $e');
-    }
-  }
-
-  static Future<Response> getEmirateList() async {
-    try {
-      final response = await _dio!.get(getEmirateListUrl);
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get emirate list: $e');
-    }
-  }
-
-  static Future<Response> getShipments({
-    required int companyId,
-    int page = 1,
-    int pageSize = 5,
-    String? fromDate,
-    String? toDate,
-    int? statusId,
-    List<int>? emirateId,
-  }) async {
-    try {
-      final response = await _dio!.post(
-        getShipmentsUrl,
-        data: {
-          "page": page,
-          "page_size": pageSize,
-          "from_date":
-              fromDate ?? DateFormat('yyyy-MM-dd').format(DateTime.now()),
-          "to_date": toDate ?? DateFormat('yyyy-MM-dd').format(DateTime.now()),
-          "status_id": statusId,
-          "emirate_id": emirateId,
-          "company_id": companyId,
-        },
-      );
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get shipments: $e');
-    }
-  }
-
-  static Future<Response> searchShipments({
-    required int companyId,
-    required String search,
-    int page = 1,
-    int pageSize = 5,
-  }) async {
-    try {
-      final response = await _dio!.post(
-        searchShipmentsUrl,
-        data: {
-          "page": page,
-          "page_size": pageSize,
-          "search": search,
-          "company_id": companyId,
-        },
-      );
-      return response;
-    } catch (e) {
-      throw Exception('Failed to search shipments: $e');
-    }
-  }
-
-  static Future<Response> getShipmentDetails(int shipmentId) async {
-    try {
-      final response = await _dio!.get('$getShipmentDetailsUrl$shipmentId');
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get shipment details: $e');
-    }
-  }
-
-  static Future<Response> getProducts(int companyId) async {
-    try {
-      final response = await _dio!.get('$getProductsUrl$companyId');
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get products: $e');
-    }
-  }
-
-  static Future<Response> getProductHistory(int productId) async {
-    try {
-      final response = await _dio!.get('$getProductHistoryUrl$productId');
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get product history: $e');
-    }
-  }
-
-  // static Future<Response> getPayments({
-  //   required int companyId,
-  //   int page = 1,
-  //   int pageSize = 10,
-  //   String? date,
-  // }) async {
-  //   try {
-  //     final response = await _dio!.get(
-  //       '$getPaymentsUrl$companyId',
-  //       queryParameters: {
-  //         "page": page,
-  //         "page_size": pageSize,
-  //         "date": date ??
-  //             DateFormat('yyyy-MM-dd')
-  //                 .format(DateTime.now().subtract(Duration(days: 2))),
-  //       },
-  //     );
-  //       print("resssssssssssssssssssss $response ");
-
-  //     return response;
-  //   } catch (e) {
-  //     throw Exception('Failed to get payments: $e');
-  //   }
-  // }
-
-  static Future<Response> getPayments({
-    int companyId = 867,
-    int page = 1,
-    int pageSize = 10,
-    String? date,
-  }) async {
-    try {
-      final response = await _dio!.get(
-        'https://erp.specialline.info/v1/api/vendor/company/payments/get_payments/867',
-        queryParameters: {
-          "page": page,
-          "page_size": pageSize,
-          "date": date ??
-              DateFormat('yyyy-MM-dd')
-                  .format(DateTime.now().subtract(Duration(days: 2))),
-        },
-      );
-
-      print("Response Status: ${response.statusCode}");
-      print("Response Headers: ${response.headers}");
-      print("Response Data: ${response.data}");
-
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get payments: $e');
-    }
-  }
-
-  static Future<Response> getServices() async {
-    try {
-      final response = await _dio!.get(getServicesUrl);
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get services: $e');
-    }
-  }
-
-  static Future<Response> makeRequest({
-    required int companyId,
-    required int serviceId,
-  }) async {
-    try {
-      final response = await _dio!.post(
-        makeRequestUrl,
-        data: {
-          "company_id": companyId,
-          "service_id": serviceId,
-        },
-      );
-      return response;
-    } catch (e) {
-      throw Exception('Failed to make request: $e');
-    }
-  }
-
-  static Future<Response> getRequests({
-    required int companyId,
-    int page = 1,
-    int pageSize = 10,
-  }) async {
-    try {
-      final response = await _dio!.get(
-        '$getRequestsUrl$companyId',
-        queryParameters: {
-          "page": page,
-          "page_size": pageSize,
-        },
-      );
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get requests: $e');
-    }
-  }
-
-  static Future<Response> getShipmentTracking(
-      {int? shipmentId, required int companyId}) async {
-    try {
-      final response = await _dio!.post(
-        getShipmentTrackingUrl,
-        data: {
-          "id": shipmentId,
-          "company_id": companyId,
-        },
-      );
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get shipment tracking: $e');
-    }
-  }
-
-  static Future<Response> getVendorsCompanies(
-      {required int pageSize, required int page, String? date}) async {
-    try {
-      final response = await _dio!.get(
-        // '$getVendorsCompaniesUrl?page=$pageSize&page_size=$pageSize',
-        '$getVendorsCompaniesUrl?page=$page&page_size=$pageSize',
-        // queryParameters: {
-        //   if (date != null) 'date': date,
-        // },
-      );
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get shipment summary: $e');
+      throw Exception('Failed to fetch options: $e');
     }
   }
 
 
-
-
-  static Future<Response> getVendorPersonalProfile(
-      ) async {
-    try {
-      final response = await _dio!.get(
-        getVendorsProfileUrl,
-      );
-      return response;
-    } catch (e) {
-      throw Exception('Failed to get profile $e');
-    }
-  }
 }
-
-
-/*
-now this is test for typing speed and what is the best value for the car and now 
-and now i'm getting the f
-*/

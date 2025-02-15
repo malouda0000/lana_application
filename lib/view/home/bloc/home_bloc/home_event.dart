@@ -1,27 +1,27 @@
 part of 'home_bloc.dart';
 
-sealed class HomeEvent extends Equatable {
-  const HomeEvent();
 
-  @override
-  List<Object> get props => [];
-}
 
-class FetchVendorCompaniesEvent extends HomeEvent {
-  final int page;
-  final int pageSize;
 
-  const FetchVendorCompaniesEvent({this.page = 1, this.pageSize = 5});
+// // Events
+// abstract class HomeEvent {}
+// class FetchOptions extends HomeEvent {}
+// class SelectOption extends HomeEvent {
+//   final int groupId;
+//   final int optionId;
+//   SelectOption({required this.groupId, required this.optionId});
+// }
 
-  // @override
-  // List<Object?> get props => [page, pageSize];
-}
+///
+///
+///
 
-class FetchCurrentCompanyEvent extends HomeEvent {
-  final int companyId;
 
-  const FetchCurrentCompanyEvent(this.companyId);
-
-  // @override
-  // List<Object?> get props => [companyId];
+// Events
+abstract class HomeEvent {}
+class FetchOptions extends HomeEvent {}
+class SelectOption extends HomeEvent {
+  final int groupId;
+  final int optionId;
+  SelectOption({required this.groupId, required this.optionId});
 }

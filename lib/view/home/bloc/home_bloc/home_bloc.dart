@@ -1,89 +1,100 @@
-import 'package:equatable/equatable.dart';
+import 'package:dio/dio.dart';
+import 'package:eloro_shop_uae/core/helpers/dio_helper.dart';
+import 'package:eloro_shop_uae/view/home/model/opetion_group_moudel.dart';
+// import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 part 'home_event.dart';
 part 'home_state.dart';
-
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
-
-  int activePage = 1; 
-  HomeBloc() : super(HomeInitialState())  {
-    on<HomeEvent>((event, emit) async{
-      // TODO: implement event handler
-
-
-
-
-  // final VendorService vendorService;
-
-
-// if(event is FetchVendorCompaniesEvent)
-// {
-
-//     // emit(HomeLoadingState());
-//     try {
-//       final response = await DioHelper.getVendorsCompanies(page: event.page, pageSize: event.pageSize);
-
-//       final List<VendorCompaniesModel> companies = (response['data']['data'] as List)
-//           .map((company) => VendorCompaniesModel.fromJson(company))
-//           .toList();
-
-//       final MetaDataModel metaData = MetaDataModel.fromJson(response['data']['meta']);
-
-//       emit(VendorCompaniesLoaded(companies: companies, metaData: metaData));
-//     } catch (e) {
-//       emit(VendorError(e.toString()));
-//     }
-  
-
-// }
-
-
-// if (event is FetchVendorCompaniesEvent) {
-//   try {
-//     // Send the request to the API
-//     final response = await DioHelper.getVendorsCompanies(
-//       page: event.page,
-//       pageSize: event.pageSize,
-//     );
-
-//     // Parse the response using the VendorCompaniesModel model
-//     final VendorCompaniesModel vendorCompaniesResponse =
-//         VendorCompaniesModel.fromJson(response);
-
-//     // Extract companies list and metadata from the parsed response
-//     final List<CompanyModel> companies = vendorCompaniesResponse.data.data;
-//     final MetaDataModel metaData = vendorCompaniesResponse.data.meta;
-
-//     // Emit the loaded state with the companies and metadata
-//     emit(VendorCompaniesLoaded(companies: companies, metaData: metaData));
-//   } catch (e) {
-//     // Handle any errors and emit an error state
-//     // emit(VendorError(e.toString()));
+// Bloc
+// class HomeBloc extends Bloc<HomeEvent, HomeState> {
+//   HomeBloc() : super(HomeInitial()) {
+//     on<FetchOptions>(_onFetchOptions);
+//     // on<SelectOption>(_onSelectOption);
 //   }
+
+//   Future<void> _onFetchOptions(FetchOptions event, Emitter<HomeState> emit) async {
+//     emit(HomeLoading());
+//     try {
+//       final response = await DioHelper.fetchOptions();
+//       if (response.statusCode == 200) {
+//         final data = response.data;
+//         OptionGroupListModel optionGroups = OptionGroupListModel.fromJson(data);
+//         final availableOptions = optionGroups.data!.availableOptionLis!;
+//         emit(HomeLoaded(optionGroupsListModel: [optionGroups], availableOptions: availableOptions, selectedOptions: {}));
+//       } else {
+//         emit(HomeError("Failed to fetch data: ${response.statusMessage}"));
+//       }
+//     } catch (e) {
+//       emit(HomeError("An error occurred: $e"));
+//     }
+//   }
+//   // void _onSelectOption(SelectOption event, Emitter<HomeState> emit) {
+//   //   if (state is HomeLoaded) {
+//   //     final currentState = state as HomeLoaded;
+//   //     final newSelectedOptions = Map<int, int>.from(currentState.selectedOptions);
+//   //     newSelectedOptions[event.groupId] = event.optionId;
+//   //     emit(OptionSelectionUpdated(newSelectedOptions));
+//   //     emit(HomeLoaded(
+//   //       optionGroups: currentState.optionGroups,
+//   //       availableOptions: currentState.availableOptions,
+//   //       selectedOptions: newSelectedOptions,
+//   //     ));
+//   //   }
+//   // }
 // }
 
 
-  // Future<void> _onFetchCurrentCompany(FetchCurrentCompany event, Emitter<VendorState> emit) async {
-  //   emit(VendorLoading());
-  //   try {
-  //     final response = await vendorService.getCurrentCompany(event.companyId);
 
-  //     final VendorCompaniesModel company = VendorCompaniesModel.fromJson(response['data']);
 
-  //     emit(VendorCompanysModelLoaded(company: company));
-  //   } catch (e) {
-  //     emit(VendorError(e.toString()));
-  //   }
-  // }
+/////////
+///
+///
+///
 
 
 
+// Bloc
+class HomeBloc extends Bloc<HomeEvent, HomeState> {
+  final Dio _dio = Dio();
+  final String apiUrl = "https://dashboard.eloroshop.com/eloroshopAppApi/v1/api/OptionGroups/Multi?productId=61";
 
+  HomeBloc() : super(HomeInitial()) {
+    on<FetchOptions>(_onFetchOptions);
+    on<SelectOption>(_onSelectOption);
+  }
 
+  Future<void> _onFetchOptions(FetchOptions event, Emitter<HomeState> emit) async {
+    emit(HomeLoading());
+    try {
+      final response = await _dio.get(apiUrl);
+      if (response.statusCode == 200) {
+        final data = response.data;
+        final optionGroups = (data['optionGroupsLis'] as List)
+            .map((e) => OptionGroupsLiMoudel.fromJson(e))
+            .toList();
+        final availableOptions = AvailableOptionLisMoudel.fromJson(data['availableOptionList']);
+        emit(HomeLoaded(optionGroups: optionGroups, availableOptions: [availableOptions], selectedOptions: {}));
+      } else {
+        emit(HomeError("Failed to fetch data: ${response.statusMessage}"));
+      }
+    } catch (e) {
+      emit(HomeError("An error occurred: $e"));
+    }
+  }
 
-
-    });
+  void _onSelectOption(SelectOption event, Emitter<HomeState> emit) {
+    if (state is HomeLoaded) {
+      final currentState = state as HomeLoaded;
+      final newSelectedOptions = Map<int, int>.from(currentState.selectedOptions);
+      newSelectedOptions[event.groupId] = event.optionId;
+      emit(OptionSelectionUpdated(newSelectedOptions));
+      emit(HomeLoaded(
+        optionGroups: currentState.optionGroups,
+        availableOptions: currentState.availableOptions,
+        selectedOptions: newSelectedOptions,
+      ));
+    }
   }
 }
