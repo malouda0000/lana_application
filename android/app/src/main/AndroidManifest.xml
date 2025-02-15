@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 <uses-permission android:name="android.permission.INTERNET"/> <!-- Add this -->
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-cleartext-traffic android:value="true"/>
     <application
         android:label="eloro_shop_uae"
         android:name="${applicationName}"
