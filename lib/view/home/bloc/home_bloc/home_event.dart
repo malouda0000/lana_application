@@ -23,5 +23,8 @@ class FetchOptions extends HomeEvent {}
 class SelectOption extends HomeEvent {
   final int groupId;
   final int optionId;
-  SelectOption({required this.groupId, required this.optionId});
+  final String? colorHash;
+  SelectOption({required this.groupId, required this.optionId, 
+  this.colorHash
+  });
 }

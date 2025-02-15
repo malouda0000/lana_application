@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text(
           "Eloro Shop UAE",
           style: TextStyle(
-            color: Colors.white,
+            color: AppColors.darkBgColor,
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
@@ -88,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               decoration: BoxDecoration(
                                 //  color: hexToColor(option.colorHash)  ,
 
-                                color: Colors.amber,
+                                color: state.theMainColor?? Colors.black,
 
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10),
@@ -145,8 +145,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 margin: const EdgeInsets.symmetric(
                                   horizontal: 8,
                                 ),
-                                height: 80,
-                                width: 80,
+                                alignment: Alignment.center,
+                                height: 100,
+                                width: 100,
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       AppConstants.theNewBorderRadiusTenPX,
@@ -156,12 +157,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   // ),
                                 ),
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Radio<int>(
                                       value: option.optionId!,
                                       groupValue: state.selectedOptions[
                                           colorGroup.optionGroupId],
                                       onChanged: (value) {
+                                        // print("vvvvvvvvvvvvvvvv$value");
                                         context
                                             .read<HomeBloc>()
                                             .add(SelectOption(
@@ -219,8 +222,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 margin: const EdgeInsets.symmetric(
                                   horizontal: 8,
                                 ),
-                                height: 80,
-                                width: 80,
+                                alignment: Alignment.center,
+                                height: 100,
+                                width: 100,
                                 decoration: BoxDecoration(
                                   borderRadius:
                                       AppConstants.theNewBorderRadiusTenPX,
@@ -231,6 +235,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   // ),
                                 ),
                                 child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Radio<int>(
                                       value: option.optionId,

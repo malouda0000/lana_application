@@ -13,12 +13,14 @@ class HomeLoaded extends HomeState {
   final List<AvailableOptionLis> availableOptions;
   final Map<int, int> selectedOptions;
   final List<PossibilityGroup> filteredAvailableOptions;
+  final Color? theMainColor;
 
   HomeLoaded({
     required this.optionGroups,
     required this.availableOptions,
     required this.selectedOptions,
     this.filteredAvailableOptions = const [],
+    required this.theMainColor,
   });
 }
 
