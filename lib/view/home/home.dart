@@ -303,13 +303,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                     children:
                                         optionsGroupName.options.map((option) {
                                       // Check if the option is available
-                                      final isEnabled = state
-                                          .filteredAvailableOptions
-                                          .any((pg) =>
-                                              pg.optionGroupId ==
-                                                  optionsGroupName
-                                                      .optionGroupId &&
-                                              pg.optionId == option.optionId);
+                                      // final isEnabled = state
+                                      //     .filteredAvailableOptions
+                                      //     .any((pg) =>
+                                      //         pg.optionGroupId ==
+                                      //             optionsGroupName
+                                      //                 .optionGroupId &&
+                                      //         pg.optionId == option.optionId);
+
+                                      final isEnabled = state.filteredAvailableOptions.isEmpty ||
+    state.filteredAvailableOptions.any((pg) =>
+        pg.optionGroupId == optionsGroupName.optionGroupId &&
+        pg.optionId == option.optionId);
+
 
                                       return Container(
                                         clipBehavior: Clip.hardEdge,
