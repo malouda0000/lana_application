@@ -7,7 +7,7 @@
         android:label="eloro_shop_uae"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true"> <!-- ✅ Added this inside application -->
+        android:usesCleartextTraffic="true"> <!--  Added this inside application -->
 
         <activity
             android:name=".MainActivity"

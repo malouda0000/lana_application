@@ -245,9 +245,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         .add(SelectOption(
                                                           groupId:
                                                               optionsGroupName
-                                                                  .optionGroupId!,
+                                                                  .optionGroupId,
                                                           optionId:
-                                                              option.optionId!,
+                                                              option.optionId,
                                                         ));
                                                   },
                                                   activeColor:
@@ -432,3 +432,13 @@ class _ProductImageContainer extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+// #### home screen V2 #### //
+
+

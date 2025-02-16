@@ -124,7 +124,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         availableOptions: currentState.availableOptions,
         selectedOptions: newSelectedOptions,
         filteredAvailableOptions:
-            filteredAvailableOptions, // ✅ Update available sizes dynamically
+            filteredAvailableOptions, //  Update available sizes dynamically
 
         theMainColor: theMainColor,
       ));

@@ -13,26 +13,25 @@
 //   }
 // }
 
-
-
 import 'package:flutter/material.dart';
 
 Color hexToColor(String? hex) {
-  if (hex == null || hex.isEmpty) return Colors.transparent; // ✅ Handle null and empty cases
+  if (hex == null || hex.isEmpty)
+    return Colors.transparent; //  Handle null and empty cases
 
-  hex = hex.replaceAll("#", ""); // ✅ Remove "#" if present
+  hex = hex.replaceAll("#", ""); //  Remove "#" if present
 
   if (hex.length == 3) {
-    // ✅ Convert RGB (e.g., "F00") to full RRGGBB
+    //  Convert RGB (e.g., "F00") to full RRGGBB
     hex = hex.split("").map((char) => "$char$char").join();
   } else if (hex.length == 4) {
-    // ✅ Convert ARGB (e.g., "8F00") to AARRGGBB
+    //  Convert ARGB (e.g., "8F00") to AARRGGBB
     hex = hex.split("").map((char) => "$char$char").join();
   } else if (hex.length == 6) {
-    // ✅ Convert RRGGBB to AARRGGBB by adding full opacity "FF"
+    //  Convert RRGGBB to AARRGGBB by adding full opacity "FF"
     hex = "FF$hex";
   } else if (hex.length != 8) {
-    return Colors.grey; // ✅ Return default color if the format is invalid
+    return Colors.grey; //  Return default color if the format is invalid
   }
 
   return Color(int.parse(hex, radix: 16));
