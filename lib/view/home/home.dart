@@ -173,8 +173,108 @@ class _HomeScreenState extends State<HomeScreen> {
                         ///
                         ///
 
+                        // Column(
+                        //   // dynamic options veiwing in the home page
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   children: state.optionGroups.map((optionsGroupName) {
+                        //     return Column(
+                        //       crossAxisAlignment: CrossAxisAlignment.start,
+                        //       mainAxisAlignment: MainAxisAlignment.start,
+                        //       children: [
+                        //         Text(
+                        //           optionsGroupName.optionGroupNameEn ??
+                        //               "Property",
+                        //           style: const TextStyle(
+                        //             fontSize: 18,
+                        //             fontWeight: FontWeight.bold,
+                        //             color: AppColors.darkBgColor,
+                        //           ),
+                        //         ),
+                        //         SingleChildScrollView(
+                        //           padding: const EdgeInsets.symmetric(
+                        //             horizontal:
+                        //                 AppConstants.theDefBaddingFifteenPixl,
+                        //             vertical:
+                        //                 AppConstants.theDefBaddingFifteenPixl,
+                        //           ),
+                        //           scrollDirection: Axis.horizontal,
+                        //           physics: const BouncingScrollPhysics(),
+                        //           child: Row(
+                        //             children:
+                        //                 optionsGroupName.options.map((option) {
+                        //               return Container(
+                        //                 clipBehavior: Clip.hardEdge,
+                        //                 margin: const EdgeInsets.symmetric(
+                        //                     horizontal: 8),
+                        //                 alignment: Alignment.center,
+                        //                 height: 100,
+                        //                 width: 100,
+                        //                 decoration: BoxDecoration(
+                        //                   borderRadius: AppConstants
+                        //                       .theNewBorderRadiusTenPX,
+                        //                   color: option.colorHash == null ||
+                        //                           option.colorHash.isEmpty
+                        //                       ? Colors.white
+                        //                       : hexToColor(option.colorHash),
+                        //                 ),
+                        //                 child: SizedBox.expand(
+                        //                   child: InkWell(
+                        //                     radius: 10,
+                        //                     onTap: () {
+                        //                       context
+                        //                           .read<HomeBloc>()
+                        //                           .add(SelectOption(
+                        //                             groupId: optionsGroupName
+                        //                                 .optionGroupId!,
+                        //                             optionId: option.optionId!,
+                        //                           ));
+                        //                     },
+                        //                     child: Column(
+                        //                       mainAxisAlignment:
+                        //                           MainAxisAlignment.center,
+                        //                       children: [
+                        //                         Radio<int>(
+                        //                           value: option.optionId!,
+                        //                           groupValue:
+                        //                               state.selectedOptions[
+                        //                                   optionsGroupName
+                        //                                       .optionGroupId],
+                        //                           onChanged: (value) {
+                        //                             context
+                        //                                 .read<HomeBloc>()
+                        //                                 .add(SelectOption(
+                        //                                   groupId:
+                        //                                       optionsGroupName
+                        //                                           .optionGroupId,
+                        //                                   optionId:
+                        //                                       option.optionId,
+                        //                                 ));
+                        //                           },
+                        //                           activeColor:
+                        //                               AppColors.mainColor,
+                        //                         ),
+                        //                         Text(option.nameEn ?? "Option"),
+                        //                       ],
+                        //                     ),
+                        //                   ),
+                        //                 ),
+                        //               );
+                        //             }).toList(),
+                        //           ),
+                        //         ),
+                        //         const SizedBox(height: 16.0),
+                        //       ],
+                        //     );
+                        //   }).toList(),
+                        // ),
+
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
+
                         Column(
-                          // dynamic options veiwing in the home page
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: state.optionGroups.map((optionsGroupName) {
                             return Column(
@@ -202,6 +302,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Row(
                                     children:
                                         optionsGroupName.options.map((option) {
+                                      // Check if the option is available
+                                      final isEnabled = state
+                                          .filteredAvailableOptions
+                                          .any((pg) =>
+                                              pg.optionGroupId ==
+                                                  optionsGroupName
+                                                      .optionGroupId &&
+                                              pg.optionId == option.optionId);
+
                                       return Container(
                                         clipBehavior: Clip.hardEdge,
                                         margin: const EdgeInsets.symmetric(
@@ -220,15 +329,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: SizedBox.expand(
                                           child: InkWell(
                                             radius: 10,
-                                            onTap: () {
-                                              context
-                                                  .read<HomeBloc>()
-                                                  .add(SelectOption(
-                                                    groupId: optionsGroupName
-                                                        .optionGroupId!,
-                                                    optionId: option.optionId!,
-                                                  ));
-                                            },
+                                            onTap: isEnabled
+                                                ? () {
+                                                    context
+                                                        .read<HomeBloc>()
+                                                        .add(SelectOption(
+                                                          groupId:
+                                                              optionsGroupName
+                                                                  .optionGroupId!,
+                                                          optionId:
+                                                              option.optionId!,
+                                                          colorHash:
+                                                              option.colorHash,
+                                                        ));
+                                                  }
+                                                : null, // Disable tap if not enabled
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -239,17 +354,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       state.selectedOptions[
                                                           optionsGroupName
                                                               .optionGroupId],
-                                                  onChanged: (value) {
-                                                    context
-                                                        .read<HomeBloc>()
-                                                        .add(SelectOption(
-                                                          groupId:
-                                                              optionsGroupName
-                                                                  .optionGroupId,
-                                                          optionId:
-                                                              option.optionId,
-                                                        ));
-                                                  },
+                                                  onChanged: isEnabled
+                                                      ? (value) {
+                                                          context
+                                                              .read<HomeBloc>()
+                                                              .add(SelectOption(
+                                                                groupId:
+                                                                    optionsGroupName
+                                                                        .optionGroupId!,
+                                                                optionId: option
+                                                                    .optionId!,
+                                                                colorHash: option
+                                                                    .colorHash,
+                                                              ));
+                                                        }
+                                                      : null, // Disable radio if not enabled
                                                   activeColor:
                                                       AppColors.mainColor,
                                                 ),
@@ -379,6 +498,67 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+// class _ProductImageContainer extends StatelessWidget {
+//   const _ProductImageContainer({
+//     super.key,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       height: 350,
+//       width: double.infinity,
+//       decoration: BoxDecoration(
+//         borderRadius: AppConstants.theNewBorderRadiusTenPX,
+//         // boxShadow: AppConstants.theBoxShdow,
+//         border: Border.all(
+//           color: AppColors.greyColor,
+//         ),
+//         color: Theme.of(context).cardColor,
+//       ),
+//       child: Column(
+//         children: [
+//           Expanded(
+//               child: Container(
+//             height: double.infinity,
+//             width: double.infinity,
+//             decoration: BoxDecoration(
+//               //  color: hexToColor(option.colorHash)  ,
+
+//               // color: state.theMainColor ?? Colors.black,
+
+//               borderRadius: const BorderRadius.only(
+//                   topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+//             ),
+//           )),
+//           const SizedBox(
+//             height: 70,
+//             width: double.infinity,
+//             child: Center(
+//               child: Text(
+//                 "Colors name",
+//                 // textAlign: TextAlign.center,
+//                 style: TextStyle(
+//                   fontSize: 18,
+//                   fontWeight: FontWeight.bold,
+//                   color: AppColors.darkBgColor,
+//                 ),
+//               ),
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+///
+///
+///
+///
+///
+///
+
 class _ProductImageContainer extends StatelessWidget {
   const _ProductImageContainer({
     super.key,
@@ -386,56 +566,56 @@ class _ProductImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 350,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        borderRadius: AppConstants.theNewBorderRadiusTenPX,
-        // boxShadow: AppConstants.theBoxShdow,
-        border: Border.all(
-          color: AppColors.greyColor,
-        ),
-        color: Theme.of(context).cardColor,
-      ),
-      child: Column(
-        children: [
-          Expanded(
-              child: Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              //  color: hexToColor(option.colorHash)  ,
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        Color containerColor = Colors.white;
+        if (state is HomeLoaded) {
+          containerColor = state.theMainColor ?? Colors.white;
+        }
 
-              // color: state.theMainColor ?? Colors.black,
-
-              borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+        return Container(
+          height: 350,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: AppConstants.theNewBorderRadiusTenPX,
+            border: Border.all(
+              color: AppColors.greyColor,
             ),
-          )),
-          const SizedBox(
-            height: 70,
-            width: double.infinity,
-            child: Center(
-              child: Text(
-                "Colors name",
-                // textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.darkBgColor,
+            color: containerColor,
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                  )),
+                  child: const SizedBox(
+                    height: 70,
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        "Colors name",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.darkBgColor,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          )
-        ],
-      ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
-
-
-
-
 
 
 
