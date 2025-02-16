@@ -72,11 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         const _ProductImageContainer(),
 
                         AppConstants.emptySpaceFifteenPixl,
-///
-///
-///
-///
-///
+
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
                         // property widget
                         // Column(
                         //   crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,98 +168,115 @@ class _HomeScreenState extends State<HomeScreen> {
                         // ),
 
 ////
-///
-///
-///
-///
+                        ///
+                        ///
+                        ///
+                        ///
 
-
-
-Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: state.optionGroups.map((optionsGroupName) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          optionsGroupName.optionGroupNameEn ?? "Property",
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.darkBgColor,
-                          ),
-                        ),
-                        SingleChildScrollView(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: AppConstants.theDefBaddingFifteenPixl,
-                            vertical: AppConstants.theDefBaddingFifteenPixl,
-                          ),
-                          scrollDirection: Axis.horizontal,
-                          physics: const BouncingScrollPhysics(),
-                          child: Row(
-                            children: optionsGroupName.options.map((option) {
-                              return Container(
-                                clipBehavior: Clip.hardEdge,
-                                margin: const EdgeInsets.symmetric(horizontal: 8),
-                                alignment: Alignment.center,
-                                height: 100,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  borderRadius: AppConstants.theNewBorderRadiusTenPX,
-                                  color: hexToColor(option.colorHash),
-                                ),
-                                child: SizedBox.expand(
-                                  child: InkWell(
-                                    radius: 10,
-                                    onTap: () {
-                                      context.read<HomeBloc>().add(SelectOption(
-                                        groupId: optionsGroupName.optionGroupId!,
-                                        optionId: option.optionId!,
-                                      ));
-                                    },
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Radio<int>(
-                                          value: option.optionId!,
-                                          groupValue: state.selectedOptions[optionsGroupName.optionGroupId],
-                                          onChanged: (value) {
-                                            context.read<HomeBloc>().add(SelectOption(
-                                              groupId: optionsGroupName.optionGroupId!,
-                                              optionId: option.optionId!,
-                                            ));
-                                          },
-                                          activeColor: AppColors.mainColor,
-                                        ),
-                                        Text(option.nameEn ?? "Option"),
-                                      ],
-                                    ),
+                        Column(
+                          // dynamic options veiwing in the home page
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: state.optionGroups.map((optionsGroupName) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  optionsGroupName.optionGroupNameEn ??
+                                      "Property",
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.darkBgColor,
                                   ),
                                 ),
-                              );
-                            }).toList(),
-                          ),
+                                SingleChildScrollView(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal:
+                                        AppConstants.theDefBaddingFifteenPixl,
+                                    vertical:
+                                        AppConstants.theDefBaddingFifteenPixl,
+                                  ),
+                                  scrollDirection: Axis.horizontal,
+                                  physics: const BouncingScrollPhysics(),
+                                  child: Row(
+                                    children:
+                                        optionsGroupName.options.map((option) {
+                                      return Container(
+                                        clipBehavior: Clip.hardEdge,
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 8),
+                                        alignment: Alignment.center,
+                                        height: 100,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius: AppConstants
+                                              .theNewBorderRadiusTenPX,
+                                          color: option.colorHash == null ||
+                                                  option.colorHash.isEmpty
+                                              ? Colors.white
+                                              : hexToColor(option.colorHash),
+                                        ),
+                                        child: SizedBox.expand(
+                                          child: InkWell(
+                                            radius: 10,
+                                            onTap: () {
+                                              context
+                                                  .read<HomeBloc>()
+                                                  .add(SelectOption(
+                                                    groupId: optionsGroupName
+                                                        .optionGroupId!,
+                                                    optionId: option.optionId!,
+                                                  ));
+                                            },
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Radio<int>(
+                                                  value: option.optionId!,
+                                                  groupValue:
+                                                      state.selectedOptions[
+                                                          optionsGroupName
+                                                              .optionGroupId],
+                                                  onChanged: (value) {
+                                                    context
+                                                        .read<HomeBloc>()
+                                                        .add(SelectOption(
+                                                          groupId:
+                                                              optionsGroupName
+                                                                  .optionGroupId!,
+                                                          optionId:
+                                                              option.optionId!,
+                                                        ));
+                                                  },
+                                                  activeColor:
+                                                      AppColors.mainColor,
+                                                ),
+                                                Text(option.nameEn ?? "Option"),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }).toList(),
+                                  ),
+                                ),
+                                const SizedBox(height: 16.0),
+                              ],
+                            );
+                          }).toList(),
                         ),
-                        const SizedBox(height: 16.0),
-                      ],
-                    );
-                  }).toList(),
-                ),
 
-
-
-
-
-///
-///
-///
-///
-///
-///
-///
-///
-///
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
 
                         // Size Selection (Updated dynamically based on color selection)
                         // Text(
@@ -337,7 +355,6 @@ Column(
                         //     }).toList(),
                         //   ),
                         // ),
-
 
                         ///
                         ///
