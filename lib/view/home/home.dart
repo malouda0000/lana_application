@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             if (state is HomeLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is HomeLoaded) {
-              final colorGroup = state.optionGroups.firstWhere(
+              final optionsGroupName = state.optionGroups.firstWhere(
                 (group) => group.isColor == true,
                 orElse: () => state.optionGroups.first,
               );
@@ -54,215 +54,300 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SingleChildScrollView(
                   // primary: true,
 
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "The Active Option",
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.darkBgColor,
-                        ),
-                      ),
-
-                      AppConstants.emptySpaceFifteenPixl,
-
-                      Container(
-                        height: 350,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          borderRadius: AppConstants.theNewBorderRadiusTenPX,
-                          // boxShadow: AppConstants.theBoxShdow,
-                          border: Border.all(
-                            color: AppColors.greyColor,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "The Active Option",
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.darkBgColor,
                           ),
-                          color: Theme.of(context).cardColor,
                         ),
-                        child: Column(
-                          children: [
-                            Expanded(
-                                child: Container(
-                              height: double.infinity,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                //  color: hexToColor(option.colorHash)  ,
 
-                                color: state.theMainColor?? Colors.black,
+                        AppConstants.emptySpaceFifteenPixl,
 
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10)),
-                              ),
-                            )),
-                            SizedBox(
-                              height: 70,
-                              width: double.infinity,
-                              child: Center(
-                                child: Text(
-                                  "Colors name",
-                                  // textAlign: TextAlign.center,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.darkBgColor,
-                                  ),
-                                ),
-                              ),
-                            )
-                          ],
+                        const _ProductImageContainer(),
+
+                        AppConstants.emptySpaceFifteenPixl,
+///
+///
+///
+///
+///
+                        // property widget
+                        // Column(
+                        //   crossAxisAlignment: CrossAxisAlignment.start,
+                        //   mainAxisAlignment: MainAxisAlignment.start,
+                        //   children: [
+                        //     Text(
+                        //       // Proberte Name,
+                        //       optionsGroupName.optionGroupNameEn ?? "Property",
+                        //       style: const TextStyle(
+                        //         fontSize: 18,
+                        //         fontWeight: FontWeight.bold,
+                        //         color: AppColors.darkBgColor,
+                        //       ),
+                        //     ),
+                        //     SingleChildScrollView(
+                        //       // Property Row
+                        //       padding: const EdgeInsets.symmetric(
+                        //         horizontal:
+                        //             AppConstants.theDefBaddingFifteenPixl,
+                        //         vertical: AppConstants.theDefBaddingFifteenPixl,
+                        //       ),
+                        //       scrollDirection: Axis.horizontal,
+                        //       physics: const BouncingScrollPhysics(),
+                        //       child: Row(
+                        //         children:
+                        //             optionsGroupName.options.map((option) {
+                        //           return Container(
+                        //             clipBehavior: Clip.hardEdge,
+                        //             margin: const EdgeInsets.symmetric(
+                        //               horizontal: 8,
+                        //             ),
+                        //             alignment: Alignment.center,
+                        //             height: 100,
+                        //             width: 100,
+                        //             decoration: BoxDecoration(
+                        //               borderRadius:
+                        //                   AppConstants.theNewBorderRadiusTenPX,
+                        //               color: hexToColor(option.colorHash),
+                        //               // border: Border.all(
+                        //               //   color: AppColors.greyColor,
+                        //               // ),
+                        //             ),
+                        //             child: SizedBox.expand(
+                        //               child: InkWell(
+                        //                 radius: 10,
+                        //                 onTap: () {
+                        //                   context
+                        //                       .read<HomeBloc>()
+                        //                       .add(SelectOption(
+                        //                         groupId: optionsGroupName
+                        //                             .optionGroupId!,
+                        //                         optionId: option.optionId!,
+                        //                       ));
+                        //                 },
+                        //                 child: Column(
+                        //                   mainAxisAlignment:
+                        //                       MainAxisAlignment.center,
+                        //                   children: [
+                        //                     Radio<int>(
+                        //                       value: option.optionId!,
+                        //                       groupValue: state.selectedOptions[
+                        //                           optionsGroupName
+                        //                               .optionGroupId],
+                        //                       onChanged: (value) {
+                        //                         // print("vvvvvvvvvvvvvvvv$value");
+                        //                         context
+                        //                             .read<HomeBloc>()
+                        //                             .add(SelectOption(
+                        //                               groupId: optionsGroupName
+                        //                                   .optionGroupId!,
+                        //                               optionId:
+                        //                                   option.optionId!,
+                        //                             ));
+                        //                       },
+                        //                       activeColor: AppColors.mainColor,
+                        //                     ),
+                        //                     Text(option.nameEn ?? "Option"),
+                        //                   ],
+                        //                 ),
+                        //               ),
+                        //             ),
+                        //           );
+                        //         }).toList(),
+                        //       ),
+                        //     ),
+                        //     const SizedBox(height: 16.0),
+                        //   ],
+                        // ),
+
+////
+///
+///
+///
+///
+
+
+
+Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: state.optionGroups.map((optionsGroupName) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          optionsGroupName.optionGroupNameEn ?? "Property",
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.darkBgColor,
+                          ),
                         ),
-                      ),
-
-                      AppConstants.emptySpaceFifteenPixl,
-
-                      // Color Selection
-                      Text(
-                        colorGroup.optionGroupNameEn ?? "Colors",
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.darkBgColor,
-                        ),
-                      ),
-                      SingleChildScrollView(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppConstants.theDefBaddingFifteenPixl,
-                          vertical: AppConstants.theDefBaddingFifteenPixl,
-                        ),
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        child: Row(
-                          children: colorGroup.options!.map((option) {
-                            return InkWell(
-                              onTap: () {
-                                context.read<HomeBloc>().add(SelectOption(
-                                      groupId: colorGroup.optionGroupId!,
-                                      optionId: option.optionId!,
-                                    ));
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                ),
+                        SingleChildScrollView(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppConstants.theDefBaddingFifteenPixl,
+                            vertical: AppConstants.theDefBaddingFifteenPixl,
+                          ),
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          child: Row(
+                            children: optionsGroupName.options.map((option) {
+                              return Container(
+                                clipBehavior: Clip.hardEdge,
+                                margin: const EdgeInsets.symmetric(horizontal: 8),
                                 alignment: Alignment.center,
                                 height: 100,
                                 width: 100,
                                 decoration: BoxDecoration(
-                                  borderRadius:
-                                      AppConstants.theNewBorderRadiusTenPX,
+                                  borderRadius: AppConstants.theNewBorderRadiusTenPX,
                                   color: hexToColor(option.colorHash),
-                                  // border: Border.all(
-                                  //   color: AppColors.greyColor,
-                                  // ),
                                 ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Radio<int>(
-                                      value: option.optionId!,
-                                      groupValue: state.selectedOptions[
-                                          colorGroup.optionGroupId],
-                                      onChanged: (value) {
-                                        // print("vvvvvvvvvvvvvvvv$value");
-                                        context
-                                            .read<HomeBloc>()
-                                            .add(SelectOption(
-                                              groupId:
-                                                  colorGroup.optionGroupId!,
+                                child: SizedBox.expand(
+                                  child: InkWell(
+                                    radius: 10,
+                                    onTap: () {
+                                      context.read<HomeBloc>().add(SelectOption(
+                                        groupId: optionsGroupName.optionGroupId!,
+                                        optionId: option.optionId!,
+                                      ));
+                                    },
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Radio<int>(
+                                          value: option.optionId!,
+                                          groupValue: state.selectedOptions[optionsGroupName.optionGroupId],
+                                          onChanged: (value) {
+                                            context.read<HomeBloc>().add(SelectOption(
+                                              groupId: optionsGroupName.optionGroupId!,
                                               optionId: option.optionId!,
                                             ));
-                                      },
-                                      activeColor: AppColors.mainColor,
+                                          },
+                                          activeColor: AppColors.mainColor,
+                                        ),
+                                        Text(option.nameEn ?? "Option"),
+                                      ],
                                     ),
-                                    Text(option.nameEn ?? "Option"),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            );
-                          }).toList(),
+                              );
+                            }).toList(),
+                          ),
                         ),
-                      ),
+                        const SizedBox(height: 16.0),
+                      ],
+                    );
+                  }).toList(),
+                ),
 
-                      const SizedBox(height: 16.0),
 
-                      // Size Selection (Updated dynamically based on color selection)
-                      Text(
-                        sizeGroup.optionGroupNameEn ?? "Sizes",
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.darkBgColor,
-                        ),
-                      ),
-                      SingleChildScrollView(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: AppConstants.theDefBaddingFifteenPixl,
-                          vertical: AppConstants.theDefBaddingFifteenPixl,
-                        ),
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        child: Row(
-                          children: sizeGroup.options!.map((option) {
-                            final isEnabled = state.filteredAvailableOptions
-                                .any((pg) =>
-                                    pg.optionGroupId ==
-                                        sizeGroup.optionGroupId &&
-                                    pg.optionId == option.optionId);
-                            return InkWell(
-                              onTap: () {
-                                if (isEnabled) {
-                                  context.read<HomeBloc>().add(SelectOption(
-                                        groupId: sizeGroup.optionGroupId,
-                                        optionId: option.optionId,
-                                      ));
-                                }
-                              },
-                              child: Container(
-                                margin: const EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                ),
-                                alignment: Alignment.center,
-                                height: 100,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      AppConstants.theNewBorderRadiusTenPX,
-                                  boxShadow: AppConstants.theBoxShdow,
-                                  color: Theme.of(context).cardColor,
-                                  // border: Border.all(
-                                  //   color:   AppColors.greyColor,
-                                  // ),
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Radio<int>(
-                                      value: option.optionId,
-                                      groupValue: state.selectedOptions[
-                                          sizeGroup.optionGroupId],
-                                      onChanged: isEnabled
-                                          ? (value) {
-                                              context
-                                                  .read<HomeBloc>()
-                                                  .add(SelectOption(
-                                                    groupId: sizeGroup
-                                                        .optionGroupId!,
-                                                    optionId: option.optionId!,
-                                                  ));
-                                            }
-                                          : null,
-                                      activeColor: AppColors.mainColor,
-                                    ),
-                                    Text(option.nameEn ?? "Option"),
-                                  ],
-                                ),
-                              ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ],
+
+
+
+///
+///
+///
+///
+///
+///
+///
+///
+///
+
+                        // Size Selection (Updated dynamically based on color selection)
+                        // Text(
+                        //   sizeGroup.optionGroupNameEn ?? "Sizes",
+                        //   style: const TextStyle(
+                        //     fontSize: 18,
+                        //     fontWeight: FontWeight.bold,
+                        //     color: AppColors.darkBgColor,
+                        //   ),
+                        // ),
+                        // SingleChildScrollView(
+                        //   padding: const EdgeInsets.symmetric(
+                        //     horizontal: AppConstants.theDefBaddingFifteenPixl,
+                        //     vertical: AppConstants.theDefBaddingFifteenPixl,
+                        //   ),
+                        //   scrollDirection: Axis.horizontal,
+                        //   physics: const BouncingScrollPhysics(),
+                        //   child: Row(
+                        //     children: sizeGroup.options!.map((option) {
+                        //       final isEnabled = state.filteredAvailableOptions
+                        //           .any((pg) =>
+                        //               pg.optionGroupId ==
+                        //                   sizeGroup.optionGroupId &&
+                        //               pg.optionId == option.optionId);
+                        //       return InkWell(
+                        //         onTap: () {
+                        //           if (isEnabled) {
+                        //             context.read<HomeBloc>().add(SelectOption(
+                        //                   groupId: sizeGroup.optionGroupId,
+                        //                   optionId: option.optionId,
+                        //                 ));
+                        //           }
+                        //         },
+                        //         child: Container(
+                        //           margin: const EdgeInsets.symmetric(
+                        //             horizontal: 8,
+                        //           ),
+                        //           alignment: Alignment.center,
+                        //           height: 100,
+                        //           width: 100,
+                        //           decoration: BoxDecoration(
+                        //             borderRadius:
+                        //                 AppConstants.theNewBorderRadiusTenPX,
+                        //             boxShadow: AppConstants.theBoxShdow,
+                        //             color: Theme.of(context).cardColor,
+                        //             // border: Border.all(
+                        //             //   color:   AppColors.greyColor,
+                        //             // ),
+                        //           ),
+                        //           child: Column(
+                        //             mainAxisAlignment: MainAxisAlignment.center,
+                        //             children: [
+                        //               Radio<int>(
+                        //                 value: option.optionId,
+                        //                 groupValue: state.selectedOptions[
+                        //                     sizeGroup.optionGroupId],
+                        //                 onChanged: isEnabled
+                        //                     ? (value) {
+                        //                         context
+                        //                             .read<HomeBloc>()
+                        //                             .add(SelectOption(
+                        //                               groupId: sizeGroup
+                        //                                   .optionGroupId!,
+                        //                               optionId:
+                        //                                   option.optionId!,
+                        //                             ));
+                        //                       }
+                        //                     : null,
+                        //                 activeColor: AppColors.mainColor,
+                        //               ),
+                        //               Text(option.nameEn ?? "Option"),
+                        //             ],
+                        //           ),
+                        //         ),
+                        //       );
+                        //     }).toList(),
+                        //   ),
+                        // ),
+
+
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
+                        ///
+                      ],
+                    ),
                   ),
                 ),
               );
@@ -272,6 +357,60 @@ class _HomeScreenState extends State<HomeScreen> {
             return const Center(child: Text("No data available"));
           },
         ),
+      ),
+    );
+  }
+}
+
+class _ProductImageContainer extends StatelessWidget {
+  const _ProductImageContainer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 350,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        borderRadius: AppConstants.theNewBorderRadiusTenPX,
+        // boxShadow: AppConstants.theBoxShdow,
+        border: Border.all(
+          color: AppColors.greyColor,
+        ),
+        color: Theme.of(context).cardColor,
+      ),
+      child: Column(
+        children: [
+          Expanded(
+              child: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              //  color: hexToColor(option.colorHash)  ,
+
+              // color: state.theMainColor ?? Colors.black,
+
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+            ),
+          )),
+          const SizedBox(
+            height: 70,
+            width: double.infinity,
+            child: Center(
+              child: Text(
+                "Colors name",
+                // textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.darkBgColor,
+                ),
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

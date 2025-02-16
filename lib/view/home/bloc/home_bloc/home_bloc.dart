@@ -58,7 +58,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         // print("==========" + response.data.toString());
         // print("==========v ressponse 200");
         final data = response.data;
-        final optionGroups = OptionGroupListModel.fromJson(data);
+        final optionGroups = OptionGroupModel.fromJson(data);
         final availableOptions =
             AvailableOptionLis.fromJson(data['data']['availableOptionLis']);
         emit(HomeLoaded(

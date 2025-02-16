@@ -1,14 +1,14 @@
-// // class OptionGroupListModel {
+// // class OptionGroupModel {
 // //     OpetionDataModel? data;
 
-// //     OptionGroupListModel({
+// //     OptionGroupModel({
 // //         this.data,
 // //     });
 
-// //     OptionGroupListModel copyWith({
+// //     OptionGroupModel copyWith({
 // //         OpetionDataModel? data,
 // //     }) =>
-// //         OptionGroupListModel(
+// //         OptionGroupModel(
 // //             data: data ?? this.data,
 // //         );
 // // }
@@ -171,25 +171,25 @@
 
 // // import 'dart:convert';
 
-// // class OptionGroupListModel {
+// // class OptionGroupModel {
 // //   final OpetionsDataMoudel? data;
 
-// //   OptionGroupListModel({
+// //   OptionGroupModel({
 // //     this.data,
 // //   });
 
-// //   OptionGroupListModel copyWith({
+// //   OptionGroupModel copyWith({
 // //     OpetionsDataMoudel? data,
 // //   }) =>
-// //       OptionGroupListModel(
+// //       OptionGroupModel(
 // //         data: data ?? this.data,
 // //       );
 
-// //   // factory OptionGroupListModel.fromRawJson(String str) => OptionGroupListModel.fromJson(json.decode(str));
+// //   // factory OptionGroupModel.fromRawJson(String str) => OptionGroupModel.fromJson(json.decode(str));
 
 // //   // String toRawJson() => json.encode(toJson());
 
-// //   // factory OptionGroupListModel.fromJson(Map<String, dynamic> json) => OptionGroupListModel(
+// //   // factory OptionGroupModel.fromJson(Map<String, dynamic> json) => OptionGroupModel(
 // //   //     data: json["data"] == null ? null : OpetionsDataMoudel.fromJson(json["data"]),
 // //   // );
 
@@ -197,8 +197,8 @@
 // //   //     "data": data?.toJson(),
 // //   // };
 
-// //   factory OptionGroupListModel.fromJson(Map<String, dynamic> json) =>
-// //       OptionGroupListModel(
+// //   factory OptionGroupModel.fromJson(Map<String, dynamic> json) =>
+// //       OptionGroupModel(
 // //         data: json["data"] != null
 // //             ? OpetionsDataMoudel.fromJson(json["data"])
 // //             : null,
@@ -490,25 +490,25 @@
 
 // // import 'dart:convert';
 
-// // class OptionGroupListModel {
+// // class OptionGroupModel {
 // //     final Data? data;
 
-// //     OptionGroupListModel({
+// //     OptionGroupModel({
 // //         this.data,
 // //     });
 
-// //     OptionGroupListModel copyWith({
+// //     OptionGroupModel copyWith({
 // //         Data? data,
 // //     }) => 
-// //         OptionGroupListModel(
+// //         OptionGroupModel(
 // //             data: data ?? this.data,
 // //         );
 
-// //     factory OptionGroupListModel.fromRawJson(String str) => OptionGroupListModel.fromJson(json.decode(str));
+// //     factory OptionGroupModel.fromRawJson(String str) => OptionGroupModel.fromJson(json.decode(str));
 
 // //     String toRawJson() => json.encode(toJson());
 
-// //     factory OptionGroupListModel.fromJson(Map<String, dynamic> json) => OptionGroupListModel(
+// //     factory OptionGroupModel.fromJson(Map<String, dynamic> json) => OptionGroupModel(
 // //         data: json["data"] == null ? null : Data.fromJson(json["data"]),
 // //     );
 
@@ -771,25 +771,25 @@
 
 // // import 'dart:convert';
 
-// // class OptionGroupListModel {
+// // class OptionGroupModel {
 // //     final Data? data;
 
-// //     OptionGroupListModel({
+// //     OptionGroupModel({
 // //         this.data,
 // //     });
 
-// //     OptionGroupListModel copyWith({
+// //     OptionGroupModel copyWith({
 // //         Data? data,
 // //     }) => 
-// //         OptionGroupListModel(
+// //         OptionGroupModel(
 // //             data: data ?? this.data,
 // //         );
 
-// //     factory OptionGroupListModel.fromRawJson(String str) => OptionGroupListModel.fromJson(json.decode(str));
+// //     factory OptionGroupModel.fromRawJson(String str) => OptionGroupModel.fromJson(json.decode(str));
 
 // //     String toRawJson() => json.encode(toJson());
 
-// //     factory OptionGroupListModel.fromJson(Map<String, dynamic> json) => OptionGroupListModel(
+// //     factory OptionGroupModel.fromJson(Map<String, dynamic> json) => OptionGroupModel(
 // //         data: json["data"] != null ? Data.fromJson(json["data"]) : null,
 // //     );
 
@@ -936,25 +936,25 @@
 
 // import 'dart:convert';
 
-// class OptionGroupListModel {
+// class OptionGroupModel {
 //     final Data? data;
 
-//     OptionGroupListModel({
+//     OptionGroupModel({
 //         this.data,
 //     });
 
-//     OptionGroupListModel copyWith({
+//     OptionGroupModel copyWith({
 //         Data? data,
 //     }) => 
-//         OptionGroupListModel(
+//         OptionGroupModel(
 //             data: data ?? this.data,
 //         );
 
-//     factory OptionGroupListModel.fromRawJson(String str) => OptionGroupListModel.fromJson(json.decode(str));
+//     factory OptionGroupModel.fromRawJson(String str) => OptionGroupModel.fromJson(json.decode(str));
 
 //     String toRawJson() => json.encode(toJson());
 
-//     factory OptionGroupListModel.fromJson(Map<String, dynamic> json) => OptionGroupListModel(
+//     factory OptionGroupModel.fromJson(Map<String, dynamic> json) => OptionGroupModel(
 //         data: json["data"] == null ? null : Data.fromJson(json["data"]),
 //     );
 

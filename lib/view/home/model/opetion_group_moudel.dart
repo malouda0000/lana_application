@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-class OptionGroupListModel {
+class OptionGroupModel {
     Data data;
 
-    OptionGroupListModel({
+    OptionGroupModel({
         required this.data,
     });
 
-    OptionGroupListModel copyWith({
+    OptionGroupModel copyWith({
         Data? data,
     }) => 
-        OptionGroupListModel(
+        OptionGroupModel(
             data: data ?? this.data,
         );
 
-    factory OptionGroupListModel.fromRawJson(String str) => OptionGroupListModel.fromJson(json.decode(str));
+    factory OptionGroupModel.fromRawJson(String str) => OptionGroupModel.fromJson(json.decode(str));
 
     String toRawJson() => json.encode(toJson());
 
-    factory OptionGroupListModel.fromJson(Map<String, dynamic> json) => OptionGroupListModel(
+    factory OptionGroupModel.fromJson(Map<String, dynamic> json) => OptionGroupModel(
         data: Data.fromJson(json["data"]),
     );
 
