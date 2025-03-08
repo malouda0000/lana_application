@@ -107,3 +107,10 @@ class AppConstants {
   //       : true;
   // }
 }
+
+
+
+
+main: #148C5C
+accent: #61CE70
+font: roboto
