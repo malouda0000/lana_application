@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:eloro_shop_uae/core/constants/app_constants.dart';
+import 'package:eloro_shop_uae/core/constants/app_images.dart';
 import 'package:eloro_shop_uae/core/func/nav_func.dart';
 import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:eloro_shop_uae/view/Auth/bloc/auth_bloc.dart';
+import 'package:eloro_shop_uae/view/Auth/register/register_screen.dart';
 import 'package:eloro_shop_uae/view/Auth/register/widgets/auth_custom_icon.dart';
 import 'package:eloro_shop_uae/view/home/home.dart';
 import 'package:eloro_shop_uae/view/shared/screens/error_screen.dart';
@@ -169,23 +171,23 @@ class _LoginBodyState extends State<_LoginBody> {
               SizedBox(
                 height: 30,
               ),
-              // _DepugSign(),
-              // SizedBox(
-              //   height: 30,
-              // ),
-              // _DontHaveAccountButton(),
-              // SizedBox(
-              //   height: 30,
-              // ),
+              _DepugSign(),
+              SizedBox(
+                height: 30,
+              ),
+              _DontHaveAccountButton(),
+              SizedBox(
+                height: 30,
+              ),
               // commentd it just for apple app supmesion
-              // _CustomOrRow(),
-              // SizedBox(
-              //   height: 30,
-              // ),
-              // _SocialMediaAuth(),
-              // SizedBox(
-              //   height: 30,
-              // ),
+              _CustomOrRow(),
+              SizedBox(
+                height: 30,
+              ),
+              _SocialMediaAuth(),
+              SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),
@@ -207,10 +209,10 @@ class _SocialMediaAuth extends StatelessWidget {
         InkWell(
           borderRadius: BorderRadius.circular(50),
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => const UnderDevScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const UnderDevScreen()));
 
 // this edit to be accepted in apple store
             customAppToast(
@@ -222,10 +224,10 @@ class _SocialMediaAuth extends StatelessWidget {
                   "this screen is under development",
             );
           },
-          // child: const Image(
-          //     image: AssetImage(
-          //   AppImages.facebook,
-          // )),
+          child: const Image(
+              image: AssetImage(
+            AppImages.facebook,
+          )),
         ),
         const SizedBox(
           width: 20,
@@ -233,10 +235,10 @@ class _SocialMediaAuth extends StatelessWidget {
         InkWell(
           borderRadius: BorderRadius.circular(50),
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => const UnderDevScreen()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const UnderDevScreen()));
 
 // this edit to be accepted in apple store
             customAppToast(
@@ -247,10 +249,10 @@ class _SocialMediaAuth extends StatelessWidget {
                   " this screen is under development",
             );
           },
-          // child: const Image(
-          //     image: AssetImage(
-          //   AppImages.google,
-          // )),
+          child: const Image(
+              image: AssetImage(
+            AppImages.google,
+          )),
         ),
       ],
     );
@@ -305,49 +307,54 @@ class _CustomOrRow extends StatelessWidget {
 
 // this edit to be accepted in apple store
 
-// class _DontHaveAccountButton extends StatelessWidget {
-//   const _DontHaveAccountButton({
-//     super.key,
-//   });
+class _DontHaveAccountButton extends StatelessWidget {
+  const _DontHaveAccountButton({
+    super.key,
+  });
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return InkWell(
-//       onTap: () {
-//         // Navigator.push(context,
-//         //     MaterialPageRoute(builder: (context) => const UnderDevScreen()));
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (context) => const UnderDevScreen()));
 
-// // this edit to be accepted in apple store
-//         customAppToast(
-//             message:
-//                 // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
+// this edit to be accepted in apple store
+        // customAppToast(
+        //     message:
+        //         // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
 
-//                 AppLocalizations.of(context)!.underDev);
-//       },
-//       child: InkWell(
-//         onTap: () {
-//           // Navigator.of(context).pushAndRemoveUntil(
-//           //     MaterialPageRoute(builder: (context) => SignupScreen()),
-//           //     (route) => false);
+        //         // AppLocalizations.of(context)!.underDev, 
+        //         "this screen is under development", 
+        //         );
+      },
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => SignupScreen()),
+              (route) => false);
 
-// // this edit to be accepted in apple store
-//                customAppToast(
-//                           message:
-//                               // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
+// this edit to be accepted in apple store
+               customAppToast(
+                          message:
+                              // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
 
-//                               AppLocalizations.of(context)!
-//                                   .underDev);
-//         },
-//         child: Text(
-//             style: TextStyle(
-//               color: AppColors.mainColor,
-//               fontSize: 12,
-//             ),
-//             AppLocalizations.of(context)!.youDontHaveAccount),
-//       ),
-//     );
-//   }
-// }
+                              // AppLocalizations.of(context)!.underDev, 
+                                  "this screen is under development",
+                                  );
+        },
+        child: Text(
+            style: TextStyle(
+              color: AppColors.mainColor,
+              fontSize: 12,
+            ),
+            // AppLocalizations.of(context)!.youDontHaveAccount, 
+            "this screen is under development", 
+            ),
+      ),
+    );
+  }
+}
 
 class _SignInButton extends StatelessWidget {
   const _SignInButton({
@@ -432,8 +439,8 @@ class _ForgetRestPasswordRow extends StatelessWidget {
               fontSize: 12,
             ),
             // AppLocalizations.of(context)!.resetPassword,
-          
-          "reset password",
+
+            "reset password",
           ),
         ),
       ],
@@ -551,7 +558,7 @@ class _passwordTextFeild extends StatelessWidget {
       child: FormBuilderTextField(
         // password text field
         // name: AppLocalizations.of(context)!.password,
-        name:"password", 
+        name: "password",
         controller: signInPasswordTextEditingController,
         // #### fully working validator #### //
         // #### #### //
@@ -605,35 +612,35 @@ class _passwordTextFeild extends StatelessWidget {
   }
 }
 
-// class _DepugSign extends StatelessWidget {
-//   const _DepugSign({super.key});
+class _DepugSign extends StatelessWidget {
+  const _DepugSign({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return InkWell(
-//       borderRadius: BorderRadius.circular(
-//         50,
-//       ),
-//       onTap: () {
-//         navigateToWithReplacement(context, const HomeScreen());
-//       },
-//       child: Container(
-//         height: 40,
-//         width: 200,
-//         alignment: Alignment.center,
-//         decoration: BoxDecoration(
-//             color: AppColors.greyColor,
-//             borderRadius: BorderRadius.circular(
-//               50,
-//             )),
-//         child: Text(
-//             style: TextStyle(
-//               color: Colors.white,
-//               fontWeight: FontWeight.bold,
-//               fontSize: 16,
-//             ),
-//             "debug sign"),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(
+        50,
+      ),
+      onTap: () {
+        navigateToWithReplacement(context, const HomeScreen());
+      },
+      child: Container(
+        height: 40,
+        width: 200,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            color: AppColors.greyColor,
+            borderRadius: BorderRadius.circular(
+              50,
+            )),
+        child: Text(
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+            "debug sign"),
+      ),
+    );
+  }
+}

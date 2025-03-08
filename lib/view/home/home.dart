@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.mainColor,
         centerTitle: true,
         title: const Text(
-          "Eloro Shop UAE",
+          "Lana Care UAE",
           style: TextStyle(
             color: AppColors.darkBgColor,
             fontWeight: FontWeight.bold,
