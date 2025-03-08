@@ -206,21 +206,22 @@ class UserExperinceHelper {
   }
 
   // #### custom network checker dialog #### //
-  // showNetorkCheckerDialog({required final BuildContext theContext}) {
-  //   showCustomDialog(
-  //     theContext: theContext,
+  showNetorkCheckerDialog({required final BuildContext theContext}) {
+    showCustomDialog(
+      theContext: theContext,
 
-  //     // dialogTitle: S.of(theContext ).error,
-  //     // dialogContent: S.of(theContext).checkNetwork,
-  //     dialogTitle: "error",
-  //     dialogContent: "check network",
+      // dialogTitle: S.of(theContext ).error,
+      // dialogContent: S.of(theContext).checkNetwork,
+      dialogTitle: "error",
+      dialogContent: "check network",
 
-  //     confirmButtonTitle: AppLocalizations.of(theContext)!.confirm,
-  //     onConfirm: () {
-  //       Navigator.of(theContext).pop();
-  //     },
-  //   );
-  // }
+      // confirmButtonTitle: AppLocalizations.of(theContext)!.confirm,
+      confirmButtonTitle: "confirm",
+      onConfirm: () {
+        Navigator.of(theContext).pop();
+      },
+    );
+  }
 
   //  final int milliseconds;
   // VoidCallback action;

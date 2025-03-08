@@ -10,25 +10,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// String? globalCachedUserToken = "";
-// String? globalCachedTEMPUserToken =
-// = "842|kfJ1xYx8xejTn9Oz9YNWRZUsx46l13v09X60PKhk29dc2055";
-// String? globalCachedUserLang;
-// String? globalCachedArabicUserName;
-// String? globalCachedEnglishUserName;
-// String? globalCachedUserImage = "";
-// String? globalCachedNationaltyID;
-// String? globalCachedNationaltyAr;
-// String? globalCachedNationaltyEn;
-// String? globalCachedUserBirthdate;
-// int? globalCachedUserGender;
+String? globalCachedUserToken = "";
+String? globalCachedTEMPUserToken 
+= "842|kfJ1xYx8xejTn9Oz9YNWRZUsx46l13v09X60PKhk29dc2055";
+String? globalCachedUserLang;
+String? globalCachedArabicUserName;
+String? globalCachedEnglishUserName;
+String? globalCachedUserImage = "";
+String? globalCachedNationaltyID;
+String? globalCachedNationaltyAr;
+String? globalCachedNationaltyEn;
+String? globalCachedUserBirthdate;
+int? globalCachedUserGender;
 
-// String? globalCachedUserID;
-// String? globalCachedUserPhoneNum;
-// String? globalCachedUserEmail;
-// String? globalCachedUserImageUserDoesntExiset =
-//     "https://thispersondoesnotexist.com/";
-//  const String globalDefaltCachedNetworkImage = "https://www.istockphoto.com/illustrations/green-shopping-cart-icon";
+String? globalCachedUserID;
+String? globalCachedUserPhoneNum;
+String? globalCachedUserEmail;
+String? globalCachedUserImageUserDoesntExiset =
+    "https://thispersondoesnotexist.com/";
+ const String globalDefaltCachedNetworkImage = "https://www.istockphoto.com/illustrations/green-shopping-cart-icon";
 // const String globalDefaltCachedNetworkImage =
 //     "https://cdn4.iconfinder.com/data/icons/social-media-2070/140/_shopify-512.png";
 
