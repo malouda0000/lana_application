@@ -49,6 +49,7 @@ void main() async {
   await CacheHelper.init();
   await DioHelper.init();
   // await Hive.initFlutter();
+
   runApp(MyApp(themeRepository: themeRepository));
 }
 
@@ -61,7 +62,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-
         BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
         BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
         // BlocProvider<LocalizationBloc>(create: (context) => LocalizationBloc()),
