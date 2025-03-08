@@ -110,7 +110,3 @@ class AppConstants {
 
 
 
-
-main: #148C5C
-accent: #61CE70
-font: roboto

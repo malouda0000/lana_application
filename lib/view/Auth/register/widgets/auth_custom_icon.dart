@@ -1,5 +1,5 @@
+import 'package:eloro_shop_uae/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
-import 'package:special_line_vendors/core/constants/app_images.dart';
 
 class AuthCustomIcon extends StatelessWidget {
   const AuthCustomIcon({super.key});

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // mixed colors
-  static const Color mainColor = Color(0xffFFD400);
-  static const Color main2Color = Color(0xffFFD400);
+  // static const Color mainColor = Color(0xffFFD400);
+  // static const Color main2Color = Color(0xffFFD400);
+
+  static const Color mainColor = Color(0xff148C5C);
+  static const Color main2Color = Color(0xff61CE70);
   static const Color lightGrayColor = Color(0xffF9F9F9);
   //light
   // static const Color yellowColor = Color(0xffffd200);
