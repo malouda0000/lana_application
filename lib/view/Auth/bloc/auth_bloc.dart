@@ -24,7 +24,48 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   String? cashedUserToken;
   String? cashedUserPhoneNum;
 //
-//
+// #### cache user data using shared prefs #### //
+  // _cashUserData({
+  //   required String token,
+  //   String? arabicUserName,
+  //   String? englishUserName,
+  //   String? userID,
+  //   String? userPhoneNumber,
+  //   String? userEmail,
+  // }) async {
+  //   await CacheHelper.setData(key: AppConstants.cachedUserToken, value: token);
+  //   await CacheHelper.setData(
+  //       key: AppConstants.cachedArabicUserName, value: arabicUserName);
+  //   await CacheHelper.setData(
+  //       key: AppConstants.cachedEnglishUserName, value: englishUserName);
+
+  //   await CacheHelper.setData(key: AppConstants.cachedUserID, value: userID);
+  //   await CacheHelper.setData(
+  //       key: AppConstants.cachedUserPhonNum, value: userPhoneNumber);
+  //   await CacheHelper.setData(
+  //       key: AppConstants.cachedUserEmail, value: userEmail ?? "");
+
+  //   cashedArabicUserName = arabicUserName;
+  //   cashedEnglishUserName = englishUserName;
+  //   cashedUserID = userID;
+  //   cashedUserEmail = userEmail ?? "";
+  //   cashedUserToken = token;
+  //   cashedUserPhoneNum = userPhoneNumber ?? "";
+
+  //   globalCachedUserToken = token;
+  //   // globalCachedUserLang = token;
+  //   globalCachedArabicUserName = arabicUserName;
+  //   globalCachedEnglishUserName = englishUserName;
+  //   globalCachedUserID = userID;
+  //   globalCachedUserPhoneNum = userPhoneNumber;
+  // }
+
+
+
+
+
+
+// #### cache user data using flutter secure storage #### //
   _cashUserData({
     required String token,
     String? arabicUserName,
@@ -33,16 +74,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     String? userPhoneNumber,
     String? userEmail,
   }) async {
-    await CacheHelper.setData(key: AppConstants.cachedUserToken, value: token);
-    await CacheHelper.setData(
+    await CacheHelper.saveSecureData(key: AppConstants.cachedUserToken, value: token);
+    await CacheHelper.saveSecureData(
         key: AppConstants.cachedArabicUserName, value: arabicUserName);
-    await CacheHelper.setData(
+    await CacheHelper.saveSecureData(
         key: AppConstants.cachedEnglishUserName, value: englishUserName);
 
-    await CacheHelper.setData(key: AppConstants.cachedUserID, value: userID);
-    await CacheHelper.setData(
+    await CacheHelper.saveSecureData(key: AppConstants.cachedUserID, value: userID);
+    await CacheHelper.saveSecureData(
         key: AppConstants.cachedUserPhonNum, value: userPhoneNumber);
-    await CacheHelper.setData(
+    await CacheHelper.saveSecureData(
         key: AppConstants.cachedUserEmail, value: userEmail ?? "");
 
     cashedArabicUserName = arabicUserName;
@@ -60,6 +101,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     globalCachedUserPhoneNum = userPhoneNumber;
   }
 
+
+///
+///
   String? validateName(String? value) {
     if (value!.isEmpty) {
       return 'Name cannot be empty';

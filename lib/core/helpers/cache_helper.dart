@@ -37,7 +37,7 @@ final options = IOSOptions(accessibility: KeychainAccessibility.first_unlock);
 // await storage.write(key: key, value: value, iOptions: options);
 
     // Secure Storage Methods
-  static Future<void> saveSecureData({required String key, required String value}) async {
+  static Future<void> saveSecureData({required String key, required String? value}) async {
     await _secureStorage.write(key: key, value: value);
   }
 

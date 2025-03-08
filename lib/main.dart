@@ -13,8 +13,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 String? globalCachedUserToken = "";
-String? globalCachedTEMPUserToken =
-    "842|kfJ1xYx8xejTn9Oz9YNWRZUsx46l13v09X60PKhk29dc2055";
+// String? globalCachedTEMPUserToken =
+//     "842|kfJ1xYx8xejTn9Oz9YNWRZUsx46l13v09X60PKhk29dc2055";
 String? globalCachedUserLang;
 String? globalCachedArabicUserName;
 String? globalCachedEnglishUserName;
