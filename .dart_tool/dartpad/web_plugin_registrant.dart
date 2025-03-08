@@ -8,6 +8,7 @@
 
 import 'package:connectivity_plus/src/connectivity_plus_web.dart';
 import 'package:device_info_plus/src/device_info_plus_web.dart';
+import 'package:flutter_secure_storage_web/flutter_secure_storage_web.dart';
 import 'package:fluttertoast/fluttertoast_web.dart';
 import 'package:pdfx/src/renderer/web/pdfx_plugin.dart';
 import 'package:shared_preferences_web/shared_preferences_web.dart';
@@ -17,6 +18,7 @@ void registerPlugins([final Registrar? pluginRegistrar]) {
   final Registrar registrar = pluginRegistrar ?? webPluginRegistrar;
   ConnectivityPlusWebPlugin.registerWith(registrar);
   DeviceInfoPlusWebPlugin.registerWith(registrar);
+  FlutterSecureStorageWeb.registerWith(registrar);
   FluttertoastWebPlugin.registerWith(registrar);
   PdfxPlugin.registerWith(registrar);
   SharedPreferencesPlugin.registerWith(registrar);

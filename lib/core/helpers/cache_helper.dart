@@ -1,17 +1,19 @@
 import 'dart:convert';
 
 import 'package:eloro_shop_uae/core/constants/app_constants.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheHelper {
-  static SharedPreferences? sharedPreferences;
+    static final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+  static SharedPreferences? _sharedPreferences;
 
   // String userToken='';
   // String userEmail ='';
   // String userLang ='';
 
   static init() async {
-    sharedPreferences = await SharedPreferences.getInstance();
+    _sharedPreferences = await SharedPreferences.getInstance();
     // globalCachedUserToken = await getData(key: AppConstants.cachedUserToken);
     // globalCachedUserLang = await getData(key: AppConstants.cachedUserLang);
     // globalCachedArabicUserName =
@@ -28,6 +30,31 @@ class CacheHelper {
     // getUser
   }
 
+
+  // #### flutter secure storage #### //
+
+final options = IOSOptions(accessibility: KeychainAccessibility.first_unlock);
+// await storage.write(key: key, value: value, iOptions: options);
+
+    // Secure Storage Methods
+  static Future<void> saveSecureData({required String key, required String value}) async {
+    await _secureStorage.write(key: key, value: value);
+  }
+
+  static Future<String?> getSecureData({required String key}) async {
+    return await _secureStorage.read(key: key);
+  }
+
+  static Future<void> removeSecureData(String key) async {
+    await _secureStorage.delete(key: key);
+  }
+
+  static Future<void> removeAllSecureData() async {
+    await _secureStorage.deleteAll();
+  }
+
+
+
 //   static getUserData(){
 // userToken = getData(key: AppSharedPrefrences.userToken) ?? '';
 // userEmail = getData(key: AppSharedPrefrences.userEmail) ?? '';
@@ -35,26 +62,26 @@ class CacheHelper {
 //    }
   static Future<bool> putBoolean(
       {required String key, required bool value}) async {
-    return await sharedPreferences!.setBool(key, value);
+    return await _sharedPreferences!.setBool(key, value);
   }
 
   static Future<bool> saveData(
       {required String key, required String value}) async {
-    return await sharedPreferences!.setString(key, value);
+    return await _sharedPreferences!.setString(key, value);
   }
 
   static bool? getBoolean({required String key}) {
-    return sharedPreferences!.getBool(key) ?? false;
+    return _sharedPreferences!.getBool(key) ?? false;
   }
 
   static Future<bool> setData({
     required String key,
     required dynamic value,
   }) async {
-    if (value is String) return sharedPreferences!.setString(key, value);
-    if (value is bool) return sharedPreferences!.setBool(key, value);
-    if (value is int) return sharedPreferences!.setInt(key, value);
-    return sharedPreferences!.setDouble(key, value);
+    if (value is String) return _sharedPreferences!.setString(key, value);
+    if (value is bool) return _sharedPreferences!.setBool(key, value);
+    if (value is int) return _sharedPreferences!.setInt(key, value);
+    return _sharedPreferences!.setDouble(key, value);
   }
 
 //     static Future<void > setLocalLocations({
@@ -67,9 +94,9 @@ class CacheHelper {
 //      locationsJsonList = newLocations.map((location) => location.toJson()).toList();
 //     // await prefs.setStringList('locations', locationsJsonList);
 
-//  sharedPreferences!.setString(AppConstants.cachedUserLocations, locationsJsonList);
+//  _sharedPreferences!.setString(AppConstants.cachedUserLocations, locationsJsonList);
 
-//     return sharedPreferences!.setString(AppConstants.cachedUserLocations, newLocation);
+//     return _sharedPreferences!.setString(AppConstants.cachedUserLocations, newLocation);
 //   }
 
 // #### new functions to save and get user locations #### //
@@ -77,14 +104,14 @@ class CacheHelper {
   // static const String _keyMap = 'myMap';
   static Future<bool> saveUserLocations(Map<String, String> map) async {
     // final prefs = await SharedPreferences.getInstance();
-    return await sharedPreferences!
+    return await _sharedPreferences!
         .setString(AppConstants.cachedUserLocations, map.toString());
   }
 
   static Future<Map<String, String>> getUserLocations() async {
     // final prefs = await SharedPreferences.getInstance();
     final jsonString =
-        sharedPreferences!.getString(AppConstants.cachedUserLocations);
+        _sharedPreferences!.getString(AppConstants.cachedUserLocations);
     if (jsonString == null || jsonString.isEmpty) {
       return {};
     } else {
@@ -96,14 +123,14 @@ class CacheHelper {
   static dynamic getData({
     required String key,
   }) {
-    return sharedPreferences?.get(key) ?? null;
+    return _sharedPreferences?.get(key) ?? null;
   }
 
   static Future<bool> removeData(String key) {
-    return sharedPreferences!.remove(key);
+    return _sharedPreferences!.remove(key);
   }
 
   static Future<bool> removeAllData() {
-    return sharedPreferences!.clear();
+    return _sharedPreferences!.clear();
   }
 }
