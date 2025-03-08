@@ -12,6 +12,7 @@ import 'package:eloro_shop_uae/view/shared/screens/under_deve_screen.dart';
 import 'package:eloro_shop_uae/view/shared/widgets/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 TextStyle _customLocalTextStyle = const TextStyle(
   color: Colors.black,
@@ -585,7 +586,8 @@ class _passwordTextFeild extends StatelessWidget {
               color: Colors.black,
             ),
         decoration: InputDecoration(
-          hintText: AppLocalizations.of(context)!.password,
+          // hintText: AppLocalizations.of(context)!.password,
+          hintText: "password",
           hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 // color: Colors.black,
                 height: .8,
