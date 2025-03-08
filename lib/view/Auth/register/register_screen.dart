@@ -83,6 +83,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 width: 20,
               ),
               AuthCustomIcon(),
+              
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 15,
