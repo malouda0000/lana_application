@@ -7,6 +7,7 @@ import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:eloro_shop_uae/firebase_options.dart';
 import 'package:eloro_shop_uae/view/Auth/bloc/auth_bloc.dart';
 import 'package:eloro_shop_uae/view/Auth/login/login_screen.dart';
+import 'package:eloro_shop_uae/view/Auth/register/register_screen.dart';
 import 'package:eloro_shop_uae/view/home/bloc/home_bloc/home_bloc.dart';
 import 'package:eloro_shop_uae/view/home/home.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ void main() async {
   // await Hive.initFlutter();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
+  );
 
   runApp(MyApp(themeRepository: themeRepository));
 }
@@ -80,7 +81,7 @@ class MyApp extends StatelessWidget {
         ),
         home: globalCachedUserToken != null && globalCachedUserToken != ""
             ? const HomeScreen()
-            : const LogInScreen(),
+            : const SignupScreen(),
       ),
     );
   }

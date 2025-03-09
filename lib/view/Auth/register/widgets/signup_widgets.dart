@@ -118,18 +118,18 @@ class _GoogleIconsState extends State<_GoogleIcons> {
                   dialogContent: "user agrement",
                   confirmButtonTitle: "ok",
                   onConfirm: () async {
-                    // setState(() {
-                    //   _userAgreementChecked = true;
-                    //   // context: the
+                    setState(() {
+                      _userAgreementChecked = true;
+                      // context: the
 
-                    // });
+                    });
 
                     // signUpKey.currentState!.setState(() {
                     //   _userAgreementChecked = true;
                     //   print("sssssssssssssssssssssssssssssssss");
                     // });
                     // sign
-                    setState(() {});
+                    // setState(() {});
                     // widget.theScreenContext.widget.
 
                     Navigator.of(context).pop();
@@ -138,9 +138,7 @@ class _GoogleIconsState extends State<_GoogleIcons> {
 
             // #### every thing is true #### //
             if (_userAgreementChecked == true) {
-              context.read<AuthBloc>().add(AuthSignupEvet(
-                    theContext: context,
-                  ));
+              context.read<AuthBloc>().add(AuthSignInWithGoogeleEvent(theContext: widget.theScreenContext));
             }
 
 
