@@ -14,6 +14,12 @@
       "languageVersion": "3.3"
     },
     {
+      "name": "asn1lib",
+      "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/asn1lib-1.5.8",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "async",
       "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/async-2.11.0",
       "packageUri": "lib/",
@@ -62,6 +68,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "convert",
+      "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/convert-3.1.2",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "crypto",
       "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/crypto-3.0.6",
       "packageUri": "lib/",
@@ -102,6 +114,12 @@
       "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/dio_web_adapter-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
+    },
+    {
+      "name": "encrypt",
+      "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/encrypt-5.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.18"
     },
     {
       "name": "equatable",
@@ -494,6 +512,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "pointycastle",
+      "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/pointycastle-3.9.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.2"
+    },
+    {
       "name": "provider",
       "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/provider-6.1.2",
       "packageUri": "lib/",
@@ -662,7 +686,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2025-03-09T19:37:50.144028Z",
+  "generated": "2025-03-09T20:39:22.897164Z",
   "generator": "pub",
   "generatorVersion": "3.4.4",
   "flutterRoot": "file:///Users/hmmammohamedhamza/Developer/flutter",

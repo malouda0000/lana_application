@@ -6,6 +6,10 @@ args
 3.3
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/args-2.6.0/
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/args-2.6.0/lib/
+asn1lib
+3.0
+file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/asn1lib-1.5.8/
+file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/asn1lib-1.5.8/lib/
 async
 2.18
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/async-2.11.0/
@@ -38,6 +42,10 @@ connectivity_plus_platform_interface
 2.18
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/connectivity_plus_platform_interface-2.0.1/
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/connectivity_plus_platform_interface-2.0.1/lib/
+convert
+3.4
+file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/convert-3.1.2/
+file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/convert-3.1.2/lib/
 crypto
 3.4
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/crypto-3.0.6/
@@ -66,6 +74,10 @@ dio_web_adapter
 3.3
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/dio_web_adapter-2.1.0/
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/dio_web_adapter-2.1.0/lib/
+encrypt
+2.18
+file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/encrypt-5.0.3/
+file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/encrypt-5.0.3/lib/
 equatable
 2.12
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/equatable-2.0.7/
@@ -310,6 +322,10 @@ plugin_platform_interface
 3.0
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.8/lib/
+pointycastle
+3.2
+file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/pointycastle-3.9.1/
+file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/pointycastle-3.9.1/lib/
 provider
 2.12
 file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/provider-6.1.2/
