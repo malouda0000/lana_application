@@ -323,23 +323,15 @@ class _DontHaveAccountButton extends StatelessWidget {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => SignupScreen()),
               (route) => false);
-
-// this edit to be accepted in apple store
-          customAppToast(
-            message:
-                // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
-
-                // AppLocalizations.of(context)!.underDev,
-                "this screen is under development",
-          );
         },
         child: Text(
+          // AppLocalizations.of(context)!.youDontHaveAccount,
+          "you don't have account?",
           style: TextStyle(
             color: AppColors.mainColor,
             fontSize: 12,
+            decoration: TextDecoration.underline,
           ),
-          // AppLocalizations.of(context)!.youDontHaveAccount,
-          "this screen is under development",
         ),
       ),
     );
