@@ -83,7 +83,6 @@ class _SignupScreenState extends State<SignupScreen> {
                 width: 20,
               ),
               AuthCustomIcon(),
-              
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 15,
@@ -204,25 +203,27 @@ class _SignupScreenState extends State<SignupScreen> {
             const SizedBox(
               height: 30,
             ),
-            // const _DepugSign(),
-            // const SizedBox(
-            //   height: 30,
-            // ),
-            // const _DoYouHaveAccount(),
+            const _DepugSign(),
+            const SizedBox(
+              height: 30,
+            ),
+            const _DoYouHaveAccount(),
             const SizedBox(
               height: 30,
             ),
 
             // commentd it just for apple app supmesion
 
-            // const _OrSignUpWithGoogle(),
-            // const SizedBox(
-            //   height: 30,
-            // ),
-            // _GoogleIcons(),
-            // const SizedBox(
-            //   height: 30,
-            // ),
+            const _OrSignUpWithGoogle(),
+            const SizedBox(
+              height: 30,
+            ),
+            _GoogleIcons(
+              theScreenContext: context,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
           ],
         ));
   }

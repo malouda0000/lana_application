@@ -73,11 +73,18 @@ class _OrSignUpWithGoogle extends StatelessWidget {
   }
 }
 
-class _GoogleIcons extends StatelessWidget {
+class _GoogleIcons extends StatefulWidget {
+  final BuildContext theScreenContext;
   const _GoogleIcons({
     super.key,
+    required this.theScreenContext, 
   });
 
+  @override
+  State<_GoogleIcons> createState() => _GoogleIconsState();
+}
+
+class _GoogleIconsState extends State<_GoogleIcons> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -86,19 +93,10 @@ class _GoogleIcons extends StatelessWidget {
         InkWell(
           borderRadius: BorderRadius.circular(50),
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => const UnderDevScreen()));
-
-// this edit to be accepted in apple store
             customAppToast(
-                message:
-                    // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
-
-                    // AppLocalizations.of(context)!.underDev, 
-                    "this screen is under development",
-                    );
+              message:                  // AppLocalizations.of(context)!.underDev,
+                  "this screen is under development",
+            );
           },
           child: const Image(
               image: AssetImage(
@@ -111,19 +109,41 @@ class _GoogleIcons extends StatelessWidget {
         InkWell(
           borderRadius: BorderRadius.circular(50),
           onTap: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //         builder: (context) => const UnderDevScreen()));
 
-// this edit to be accepted in apple store
-            customAppToast(
-                message:
-                    // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
+            // #### check user agrement #### //
+            if (_userAgreementChecked == false) {
+              UserExperinceHelper().showCustomDialog(
+                  theContext: widget.theScreenContext,
+                  // dialogContent: AppLocalizations.of(context)!.userAgrement,
+                  dialogContent: "user agrement",
+                  confirmButtonTitle: "ok",
+                  onConfirm: () async {
+                    // setState(() {
+                    //   _userAgreementChecked = true;
+                    //   // context: the
 
-                    // AppLocalizations.of(context)!.underDev, 
-                    "this screen is under development",
-                    );
+                    // });
+
+                    // signUpKey.currentState!.setState(() {
+                    //   _userAgreementChecked = true;
+                    //   print("sssssssssssssssssssssssssssssssss");
+                    // });
+                    // sign
+                    setState(() {});
+                    // widget.theScreenContext.widget.
+
+                    Navigator.of(context).pop();
+                  });
+            }
+
+            // #### every thing is true #### //
+            if (_userAgreementChecked == true) {
+              context.read<AuthBloc>().add(AuthSignupEvet(
+                    theContext: context,
+                  ));
+            }
+
+
           },
           child: const Image(
               image: AssetImage(
