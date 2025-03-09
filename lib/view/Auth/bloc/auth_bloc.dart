@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http_status/http_status.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -24,6 +25,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   String? cashedUserEmail;
   String? cashedUserToken;
   String? cashedUserPhoneNum;
+
 //
 // #### cache user data using shared prefs #### //
   // _cashUserData({
@@ -61,11 +63,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   //   globalCachedUserPhoneNum = userPhoneNumber;
   // }
 
-
-
-
-
-
 // #### cache user data using flutter secure storage #### //
   _cashUserData({
     required String token,
@@ -75,13 +72,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     String? userPhoneNumber,
     String? userEmail,
   }) async {
-    await CacheHelper.saveSecureData(key: AppConstants.cachedUserToken, value: token);
+    await CacheHelper.saveSecureData(
+        key: AppConstants.cachedUserToken, value: token);
     await CacheHelper.saveSecureData(
         key: AppConstants.cachedArabicUserName, value: arabicUserName);
     await CacheHelper.saveSecureData(
         key: AppConstants.cachedEnglishUserName, value: englishUserName);
 
-    await CacheHelper.saveSecureData(key: AppConstants.cachedUserID, value: userID);
+    await CacheHelper.saveSecureData(
+        key: AppConstants.cachedUserID, value: userID);
     await CacheHelper.saveSecureData(
         key: AppConstants.cachedUserPhonNum, value: userPhoneNumber);
     await CacheHelper.saveSecureData(
@@ -102,9 +101,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     globalCachedUserPhoneNum = userPhoneNumber;
   }
 
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-///
-///
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  ///
+  ///
   String? validateName(String? value) {
     if (value!.isEmpty) {
       return 'Name cannot be empty';
@@ -182,7 +198,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthLoadingStateSignIn());
 
         // Check for internet connectivity
-        bool isConnected = await InternetConnectionChecker.createInstance().hasConnection;
+        bool isConnected =
+            await InternetConnectionChecker.createInstance().hasConnection;
         if (!isConnected) {
           UserExperinceHelper()
               .showNetorkCheckerDialog(theContext: event.theContext);
@@ -268,6 +285,52 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           }
         }
       }
+
+      // #### singin with google #### //
+
+      if (event is AuthSignInWithGoogeleEvent) {
+        emit(AuthLoadingStateSignIn());
+
+        // Check for internet connectivity
+        bool isConnected =
+            await InternetConnectionChecker.createInstance().hasConnection;
+        if (!isConnected) {
+          UserExperinceHelper()
+              .showNetorkCheckerDialog(theContext: event.theContext);
+          emit(AuthErrorStateSignIn(errorMessage: "No Internet Connection"));
+          return;
+        }
+
+        try {
+          UserCredential newUserCredential = await signInWithGoogle();
+          if (newUserCredential != null) {
+            _cashUserData(
+              token: newUserCredential.credential!.accessToken!,
+              englishUserName: newUserCredential.additionalUserInfo!.username,
+              userEmail: newUserCredential.additionalUserInfo!.providerId,
+            );
+            print(
+                "aaaaaaaaaa-a=a=a=a=a=a=${newUserCredential.credential!.accessToken!}");
+          }
+        } catch (e) {
+          // Handle error response or exceptions
+          if (e is DioException && e.response != null) {
+            // Parse error response
+            SignInErrorModel errorResponse =
+                SignInErrorModel.fromJson(e.response!.data);
+
+            emit(AuthErrorStateSignIn(
+              errorMessage: errorResponse.message,
+            ));
+          } else {
+            emit(AuthErrorStateSignIn(
+              errorMessage: "An error occurred: ${e.toString()}",
+            ));
+          }
+        }
+      }
+
+      // #### singin with google #### //
 
       // #### log in #### //
 

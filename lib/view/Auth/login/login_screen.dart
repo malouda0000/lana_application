@@ -235,19 +235,9 @@ class _SocialMediaAuth extends StatelessWidget {
         InkWell(
           borderRadius: BorderRadius.circular(50),
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const UnderDevScreen()));
-
-// this edit to be accepted in apple store
-            customAppToast(
-              message:
-                  // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
-
-                  // AppLocalizations.of(context)!.underDev,
-                  " this screen is under development",
-            );
+            context.read<AuthBloc>().add(
+                  AuthSignInWithGoogeleEvent(theContext: context),
+                );
           },
           child: const Image(
               image: AssetImage(
@@ -324,8 +314,8 @@ class _DontHaveAccountButton extends StatelessWidget {
         //     message:
         //         // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
 
-        //         // AppLocalizations.of(context)!.underDev, 
-        //         "this screen is under development", 
+        //         // AppLocalizations.of(context)!.underDev,
+        //         "this screen is under development",
         //         );
       },
       child: InkWell(
@@ -335,22 +325,22 @@ class _DontHaveAccountButton extends StatelessWidget {
               (route) => false);
 
 // this edit to be accepted in apple store
-               customAppToast(
-                          message:
-                              // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
+          customAppToast(
+            message:
+                // "${AppLocalizations.of(context)!.signInWelcome}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
 
-                              // AppLocalizations.of(context)!.underDev, 
-                                  "this screen is under development",
-                                  );
+                // AppLocalizations.of(context)!.underDev,
+                "this screen is under development",
+          );
         },
         child: Text(
-            style: TextStyle(
-              color: AppColors.mainColor,
-              fontSize: 12,
-            ),
-            // AppLocalizations.of(context)!.youDontHaveAccount, 
-            "this screen is under development", 
-            ),
+          style: TextStyle(
+            color: AppColors.mainColor,
+            fontSize: 12,
+          ),
+          // AppLocalizations.of(context)!.youDontHaveAccount,
+          "this screen is under development",
+        ),
       ),
     );
   }

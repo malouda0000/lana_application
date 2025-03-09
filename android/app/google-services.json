@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "198090752268",
+    "project_id": "lana-care-15aa7",
+    "storage_bucket": "lana-care-15aa7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198090752268:android:cc4b5de5879a58791d4929",
+        "android_client_info": {
+          "package_name": "com.example.eloro_shop_uae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198090752268-51llsffqogg0ioj07ah12ggleq0kpa8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8fpi2UUjszYsLfNmXAcR2vVXs5vGu3n8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198090752268-51llsffqogg0ioj07ah12ggleq0kpa8j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "198090752268-8e8gik0nr2rvaqkl8re93d0gov5fk21t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.eloroShopUae"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

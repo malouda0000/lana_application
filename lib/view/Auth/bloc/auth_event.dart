@@ -5,17 +5,16 @@ sealed class AuthEvent {}
 
 final class AuthLogInEvent extends AuthEvent {
   final BuildContext theContext;
-
   AuthLogInEvent({required this.theContext});
 }
-
 final class AuthSignupEvet extends AuthEvent {
   final BuildContext theContext;
   AuthSignupEvet({required this.theContext});
 }
-// final class AuthLogInEvent extends AuthEvent {}
-// final class AuthLogInEvent extends AuthEvent {}
 
-// auth_event.dart
-
+final class AuthSignInWithGoogeleEvent extends AuthEvent {
+  
+  final BuildContext theContext;
+  AuthSignInWithGoogeleEvent({required this.theContext});
+}
 class SignOutEvent extends AuthEvent {}
