@@ -168,10 +168,10 @@ class _SignupScreenState extends State<SignupScreen> {
         // autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Column(
           children: [
-            const _UserNameArbFormFeild(),
-            const SizedBox(
-              height: 20,
-            ),
+            // const _UserNameArbFormFeild(),
+            // const SizedBox(
+            //   height: 20,
+            // ),
             const _UserNameEngFormFeild(),
             const SizedBox(
               height: 20,
@@ -180,10 +180,10 @@ class _SignupScreenState extends State<SignupScreen> {
             const SizedBox(
               height: 20,
             ),
-            _UserPhonNumText(),
-            const SizedBox(
-              height: 20,
-            ),
+            // _UserPhonNumText(),
+            // const SizedBox(
+            //   height: 20,
+            // ),
             _passwordFormFeild(context),
             const SizedBox(
               height: 20,

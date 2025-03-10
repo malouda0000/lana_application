@@ -1,6 +1,8 @@
 import 'package:eloro_shop_uae/core/constants/app_constants.dart';
 import 'package:eloro_shop_uae/core/func/hash_color_converter.dart';
+import 'package:eloro_shop_uae/core/helpers/user_expernce_helper.dart';
 import 'package:eloro_shop_uae/view/home/bloc/home_bloc/home_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eloro_shop_uae/core/themes/app_colors.dart';
@@ -33,6 +35,42 @@ class _HomeScreenState extends State<HomeScreen> {
             fontSize: 18,
           ),
         ),
+        actions: [
+          IconButton(onPressed: 
+          
+          (){
+
+
+UserExperinceHelper().showCustomDialog(
+                theContext: context,
+                // dialogContent: AppLocalizations.of(context)!.userAgrement,
+                dialogContent: "sign out",
+                confirmButtonTitle: "ok",
+                onConfirm: () async {
+                  // setState(() {
+                  //   _userAgreementChecked = true;
+                  //   // context: the
+
+                  // });
+
+                  // signUpKey.currentState!.setState(() {
+                  //   _userAgreementChecked = true;
+                  //   print("sssssssssssssssssssssssssssssssss");
+                  // });
+                  // sign
+                  // setState(() {});
+                  // widget.theScreenContext.widget.
+
+                  // Navigator.of(context).pop();
+
+            await FirebaseAuth.instance.signOut();
+
+                });
+
+                
+          }
+          , icon: Icon(Icons.logout_rounded, color: Colors.red,))
+        ],
       ),
       body: SafeArea(
         child: BlocBuilder<HomeBloc, HomeState>(

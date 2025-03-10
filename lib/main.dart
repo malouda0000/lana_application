@@ -48,8 +48,8 @@ void main() async {
     statusBarBrightness: Brightness.light, // Adjust for iOS
   )); // Set the status bar color
   final ThemeRepository themeRepository = ThemeRepository();
-  await dotenv.load();
-  String apiKey = dotenv.env['API_KEY'] ?? 'default_value';
+  // await dotenv.load();
+  // String apiKey = dotenv.env['API_KEY'] ?? 'default_value';
   await CacheHelper.init();
   await DioHelper.init();
   // await Hive.initFlutter();
