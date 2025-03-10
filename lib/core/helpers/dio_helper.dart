@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
+import 'package:dio_http2_adapter/dio_http2_adapter.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class DioHelper {
@@ -19,7 +21,20 @@ class DioHelper {
 
   // #### dio init #### //
 
-  static init() {
+  static init()async {
+
+    // Load the certificate from assets
+    // final Uint8List certData = (await rootBundle.load('assets/certificates/certificate.pem'))
+    //     .buffer
+    //     .asUint8List();
+
+    // // Configure Dio with SSL Pinning
+    // _dio?.httpClientAdapter = Http2Adapter(ConnectionManager(
+    //   onClientCreate: (_, config) {
+    //     config.context?.setTrustedCertificatesBytes(certData);
+    //   },
+    // ));
+    
     _dio = Dio(BaseOptions(
       baseUrl: baseUrl,
       receiveDataWhenStatusError: true,
