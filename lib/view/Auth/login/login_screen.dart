@@ -12,6 +12,7 @@ import 'package:eloro_shop_uae/view/shared/screens/error_screen.dart';
 import 'package:eloro_shop_uae/view/shared/screens/loading_screen.dart';
 import 'package:eloro_shop_uae/view/shared/screens/under_deve_screen.dart';
 import 'package:eloro_shop_uae/view/shared/widgets/toast.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -162,12 +163,20 @@ class _LoginBodyState extends State<_LoginBody> {
               //   height: 20,
               // ),
               _SignInButton(),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     // context.read<ThemeBloc>().add(ToggleThemeEvent());
-              //   },
-              //   child: const Text('Toggle Theme'),
-              // ),
+              ElevatedButton(
+                onPressed: () {
+                  // context.read<ThemeBloc>().add(ToggleThemeEvent());
+                  FirebaseAuth auth = FirebaseAuth.instance;
+                  User? user = auth.currentUser;
+
+                  if (user != null) {
+                    print("User is logged in: ${user.email}");
+                  } else {
+                    print("No user is signed in");
+                  }
+                },
+                child: const Text('Toggle Theme'),
+              ),
               SizedBox(
                 height: 30,
               ),

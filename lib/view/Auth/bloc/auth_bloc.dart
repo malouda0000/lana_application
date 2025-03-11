@@ -196,17 +196,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoadingStateSignIn());
 
       if (event is AuthLogInEvent) {
-        emit(AuthLoadingStateSignIn());
+        // emit(AuthLoadingStateSignIn());
 
         // Check for internet connectivity
-        bool isConnected =
-            await InternetConnectionChecker.createInstance().hasConnection;
-        if (!isConnected) {
-          UserExperinceHelper()
-              .showNetorkCheckerDialog(theContext: event.theContext);
-          emit(AuthErrorStateSignIn(errorMessage: "No Internet Connection"));
-          return;
-        }
+        // bool isConnected =
+        //     await InternetConnectionChecker.createInstance().hasConnection;
+        // if (!isConnected) {
+        //   UserExperinceHelper()
+        //       .showNetorkCheckerDialog(theContext: event.theContext);
+        //   emit(AuthErrorStateSignIn(errorMessage: "No Internet Connection"));
+        //   return;
+        // }
 
         // Validate the form
         // if (!signInFormKey.currentState!.validate()) {
@@ -218,95 +218,109 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         //   return;
         // }
 
+        // try {
+        //   // Make the login request
+        //   // Response logInResponse = await DioHelper.login(
+        //   //   email: signInUserEmailTextEditingController.text,
+        //   //   password: signInPasswordTextEditingController.text,
+        //   // );
+        //   // if (logInResponse.statusCode == 200) {
+        //   //   ///
+        //   //   ///
+        //   //   ///
+        //   //   ///
+        //   //   ///
+
+        //   //   SignInModel signInModel = SignInModel.fromJson(logInResponse.data);
+
+        //   //   if (signInModel.message == "Login successful") {
+        //   //     final String tooooken = signInModel.accessToken.toString();
+        //   //     // print("ttttttttttttttttttttttttttttttttttttttttttttt $tooooken");
+        //   //     if (tooooken.isNotEmpty) {
+        //   //       await _cashUserData(
+        //   //         token: tooooken,
+        //   //         arabicUserName: '',
+        //   //         englishUserName: '',
+        //   //         userID: '',
+        //   //         userEmail: '',
+        //   //         userPhoneNumber: '',
+        //   //       );
+        //   //       await DioHelper.init();
+
+        //   //       emit(AuthSuccessStateSignIn());
+        //   //     } else {
+        //   //       emit(AuthErrorStateSignIn(
+        //   //           errorMessage: "Token not found in response"));
+        //   //     }
+        //   //   } else {
+        //   //     emit(AuthErrorStateSignIn(
+        //   //         errorMessage: signInModel.message ?? "Unknown error"));
+        //   //   }
+
+        //   //   // emit(AuthSuccessStateSignIn());
+        //   // } else {
+        //   //   // Handle unexpected HTTP status codes
+        //   //   emit(AuthErrorStateSignIn(
+        //   //     errorMessage: "Unexpected error: ${logInResponse.statusCode}",
+        //   //   ));
+        //   // }
+
+        //   ///
+        //   ///
+        //   ///
+        //   ///
+
+        // } catch (e) {
+        //   // Handle error response or exceptions
+        //   if (e is DioException && e.response != null) {
+        //     // Parse error response
+        //     SignInErrorModel errorResponse =
+        //         SignInErrorModel.fromJson(e.response!.data);
+
+        //     emit(AuthErrorStateSignIn(
+        //       errorMessage: errorResponse.message,
+        //     ));
+        //   } else {
+        //     emit(AuthErrorStateSignIn(
+        //       errorMessage: "An error occurred: ${e.toString()}",
+        //     ));
+        //   }
+        // }
+
         try {
-          // Make the login request
-          // Response logInResponse = await DioHelper.login(
-          //   email: signInUserEmailTextEditingController.text,
-          //   password: signInPasswordTextEditingController.text,
-          // );
-          // if (logInResponse.statusCode == 200) {
-          //   ///
-          //   ///
-          //   ///
-          //   ///
-          //   ///
+          final credential =
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: signInUserEmailTextEditingController.text.trim(),
+            password: signInPasswordTextEditingController.text.trim(),
+          );
 
-          //   SignInModel signInModel = SignInModel.fromJson(logInResponse.data);
-
-          //   if (signInModel.message == "Login successful") {
-          //     final String tooooken = signInModel.accessToken.toString();
-          //     // print("ttttttttttttttttttttttttttttttttttttttttttttt $tooooken");
-          //     if (tooooken.isNotEmpty) {
-          //       await _cashUserData(
-          //         token: tooooken,
-          //         arabicUserName: '',
-          //         englishUserName: '',
-          //         userID: '',
-          //         userEmail: '',
-          //         userPhoneNumber: '',
-          //       );
-          //       await DioHelper.init();
-
-          //       emit(AuthSuccessStateSignIn());
-          //     } else {
-          //       emit(AuthErrorStateSignIn(
-          //           errorMessage: "Token not found in response"));
-          //     }
-          //   } else {
-          //     emit(AuthErrorStateSignIn(
-          //         errorMessage: signInModel.message ?? "Unknown error"));
-          //   }
-
-          //   // emit(AuthSuccessStateSignIn());
-          // } else {
-          //   // Handle unexpected HTTP status codes
-          //   emit(AuthErrorStateSignIn(
-          //     errorMessage: "Unexpected error: ${logInResponse.statusCode}",
-          //   ));
-          // }
-
-          ///
-          ///
-          ///
-          ///
-
-          try {
-            final credential =
-                await FirebaseAuth.instance.signInWithEmailAndPassword(
-              email: signInUserEmailTextEditingController.text,
-              password: signInPasswordTextEditingController.text,
+          if (credential.user?.email != null &&
+              credential.credential?.accessToken != null) {
+            await _cashUserData(
+              token: credential.credential!.accessToken.toString(),
+              userEmail: credential.user!.email,
             );
 
-            if (credential.user?.email != null &&
-                credential.credential?.accessToken != null) {
-              _cashUserData(
-                token: credential.credential!.accessToken.toString(),
-                userEmail: credential.user!.email,
-              );
-
-              emit(AuthSuccessStateSignIn());
-            }
-          } on FirebaseAuthException catch (e) {
-            if (e.code == 'user-not-found') {
-              print('No user found for that email.');
-            } else if (e.code == 'wrong-password') {
-              print('Wrong password provided for that user.');
-            }
+            emit(AuthSuccessStateSignIn());
           }
-        } catch (e) {
-          // Handle error response or exceptions
-          if (e is DioException && e.response != null) {
-            // Parse error response
-            SignInErrorModel errorResponse =
-                SignInErrorModel.fromJson(e.response!.data);
 
-            emit(AuthErrorStateSignIn(
-              errorMessage: errorResponse.message,
-            ));
+          FirebaseAuth auth = FirebaseAuth.instance;
+          User? theUser = auth.currentUser;
+
+          if (theUser != null) {
+            String? theToken = await theUser.getIdToken();
+            await _cashUserData(token: theToken?? "");
+            emit(AuthSuccessStateSignIn());
+
+            print("User is logged in: ${theUser.email}");
           } else {
-            emit(AuthErrorStateSignIn(
-              errorMessage: "An error occurred: ${e.toString()}",
-            ));
+            print("No user is signed in");
+          }
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'user-not-found') {
+            print('No user found for that email.');
+          } else if (e.code == 'wrong-password') {
+            print('Wrong password provided for that user.');
           }
         }
       }
@@ -442,7 +456,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
           if (credential.user?.email != null &&
               credential.credential?.accessToken != null) {
-            _cashUserData(
+            await _cashUserData(
               token: credential.credential!.accessToken.toString(),
               userEmail: credential.user!.email,
             );
@@ -457,6 +471,38 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         } catch (e) {
           print(e);
         }
+
+        // try {
+        //   final credential =
+        //       await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        //     email: signUpUserEmailTextEditingController.text.trim(),
+        //     password: signUpPasswordTextEditingController.text.trim(),
+        //   );
+
+        //        print(
+        //         'The passwordddddddddttttttttttdddd ${credential.credential!.accessToken.toString()}');
+        //         // 010203AAaa@
+
+        //   if (credential.user?.email != null &&
+        //       credential.credential?.accessToken != null) {
+        //     print(
+        //         'The passworddddddddddddd ${credential.credential!.accessToken.toString()}');
+
+        //     _cashUserData(
+        //       token: credential.credential!.accessToken.toString(),
+        //       userEmail: credential.user!.email,
+        //     );
+        //     emit(AuthSuccessStateSignIn());
+        //   }
+        // } on FirebaseAuthException catch (e) {
+        //   if (e.code == 'weak-password') {
+        //     print('The password provided is too weak.');
+        //   } else if (e.code == 'email-already-in-use') {
+        //     print('The account already exists for that email.');
+        //   }
+        // } catch (e) {
+        //   print(e);
+        // }
 
 // #### firebase sing up #### //
       }

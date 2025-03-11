@@ -54,99 +54,6 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  @override
-  Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 180,
-                width: 20,
-              ),
-              AuthCustomIcon(),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    BlocConsumer<AuthBloc, AuthState>(
-                      listener: (context, state) {
-                        // TODO: implement listener
-
-                        if (state is AuthSuccessStateSignUp) {
-                          // customAppToast(
-                          //     message:
-                          //         "${AppLocalizations.of(context)!.signUpSuccess}: ${context.read<AuthBloc>().cashedArabicUserName != null ? context.read<AuthBloc>().cashedArabicUserName! : " "}");
-                          customAppToast(message: "successs auth}");
-                          // AppCubit.get(context).getUser();
-                          navigateToWithReplacement(
-                            context,
-                            const HomeScreen(),
-                          );
-                        }
-
-                        // if (state is AuthErrorStateSignIn) {
-                        //   // context.loaderOverlay.hide();
-                        //   showToast(
-                        //     message: state.errorMessage,
-                        //   );
-
-                        //   // Duration(seconds: 5 ) ;
-                        //   // context.read<AuthBloc>().add(AuthInitialState());
-                        // }
-                      },
-                      builder: (context, state) {
-                        if (state is AuthLoadingStateSignUp) {
-                          return Center(
-                            child: const SizedBox(
-                                width: 200,
-                                height: 200,
-                                child: CustomLoadingScreen()),
-                          );
-                        } else if (state is AuthErrorStateSignUp) {
-                          return SizedBox(
-                            height: double.infinity,
-                            width: double.infinity,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                ErrorScreen(errorMessage: state.errorMessage),
-                              ],
-                            ),
-                          );
-                        }
-
-                        // else if (state is AuthInitialState )
-                        // {return CustomLoadingScreen();}
-
-                        // else if (state is AuthSuccessStateSignUp )
-                        // {return _SignUpBody(context);}
-
-                        else {
-                          return _SignUpBody(context);
-                        }
-                      },
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Form _SignUpBody(BuildContext context) {
     return Form(
         key: signUpKey,
@@ -486,16 +393,106 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 180,
+                width: 20,
+              ),
+              AuthCustomIcon(),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    BlocConsumer<AuthBloc, AuthState>(
+                      listener: (context, state) {
+                        // TODO: implement listener
+
+                        if (state is AuthSuccessStateSignUp) {
+                          customAppToast(message: "successs auth}");
+                          navigateToWithReplacement(
+                            context,
+                            const HomeScreen(),
+                          );
+                        }
+
+                        // if (state is AuthErrorStateSignIn) {
+                        //   // context.loaderOverlay.hide();
+                        //   showToast(
+                        //     message: state.errorMessage,
+                        //   );
+
+                        //   // Duration(seconds: 5 ) ;
+                        //   // context.read<AuthBloc>().add(AuthInitialState());
+                        // }
+                      },
+                      builder: (context, state) {
+                        if (state is AuthLoadingStateSignUp) {
+                          return Center(
+                            child: const SizedBox(
+                                width: 200,
+                                height: 200,
+                                child: CustomLoadingScreen()),
+                          );
+                        } else if (state is AuthErrorStateSignUp) {
+                          return SizedBox(
+                            height: double.infinity,
+                            width: double.infinity,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                ErrorScreen(errorMessage: state.errorMessage),
+                              ],
+                            ),
+                          );
+                        }
+
+                        // else if (state is AuthInitialState )
+                        // {return CustomLoadingScreen();}
+
+                        // else if (state is AuthSuccessStateSignUp )
+                        // {return _SignUpBody(context);}
+
+                        else {
+                          return _SignUpBody(context);
+                        }
+                      },
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _SignUpButton extends StatefulWidget {
-  // final GlobalKey<FormState> signUpKey;
-  final BuildContext theScreenContext;
   const _SignUpButton({
     super.key,
     // required this.signUpKey,
     required this.theScreenContext,
   });
+
+  // final GlobalKey<FormState> signUpKey;
+  final BuildContext theScreenContext;
 
   @override
   State<_SignUpButton> createState() => _SignUpButtonState();
@@ -529,20 +526,7 @@ class _SignUpButtonState extends State<_SignUpButton> {
                 dialogContent: "user agrement",
                 confirmButtonTitle: "ok",
                 onConfirm: () async {
-                  // setState(() {
-                  //   _userAgreementChecked = true;
-                  //   // context: the
-
-                  // });
-
-                  // signUpKey.currentState!.setState(() {
-                  //   _userAgreementChecked = true;
-                  //   print("sssssssssssssssssssssssssssssssss");
-                  // });
-                  // sign
                   setState(() {});
-                  // widget.theScreenContext.widget.
-
                   Navigator.of(context).pop();
                 });
           }
@@ -640,7 +624,7 @@ class _UserEmailFormFeild extends StatelessWidget {
         //   return null;
         // },
         validator: (String? value) {
-          if (value == null || value.isEmpty) {
+          if (value == null || value.trim().isEmpty) {
             return null;
           } else if (value.length < 5) {
             return 'Please enter a valid email';
@@ -671,6 +655,12 @@ class _UserEmailFormFeild extends StatelessWidget {
           //   // : null;
           // }
 
+          final emailRegex =
+              RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+          if (!emailRegex.hasMatch(value.trim())) {
+            return 'Enter a valid email address';
+          }
+
           return null;
         },
         decoration: InputDecoration(
@@ -692,120 +682,120 @@ class _UserEmailFormFeild extends StatelessWidget {
   }
 }
 
-class _UserPhonNumText extends StatelessWidget {
-  const _UserPhonNumText({
-    super.key,
-  });
+// class _UserPhonNumText extends StatelessWidget {
+//   const _UserPhonNumText({
+//     super.key,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // user phoneNum feild
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            50,
-          ),
-          // boxShadow: AppConstants.theLightBoxShdow,
-          border: AppConstants.customBorderOnePixel,
-          color: Colors.white),
-      child: FormBuilderTextField(
-        // name: AppLocalizations.of(context)!.phoneNum,
-        name: "phoneNum",
-        keyboardType: TextInputType.phone,
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       // user phoneNum feild
+//       decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(
+//             50,
+//           ),
+//           // boxShadow: AppConstants.theLightBoxShdow,
+//           border: AppConstants.customBorderOnePixel,
+//           color: Colors.white),
+//       child: FormBuilderTextField(
+//         // name: AppLocalizations.of(context)!.phoneNum,
+//         name: "phoneNum",
+//         keyboardType: TextInputType.phone,
 
-        style: _customLocalTextStyle,
-        controller: signUpUserPhonNumTextEditingController,
-        // #### fully working validator #### //
-        // #### #### //
-        validator: (value) {
-          final phoneExp = RegExp(r'^\+?1?\d{9,15}$');
-          // print("vvvvvvvvvvvvvvvvvvvvvvvv${value.runtimeType}");
-          if (value == null || value.isEmpty) {
-            return 'Please enter a phone number';
-          }
+//         style: _customLocalTextStyle,
+//         controller: signUpUserPhonNumTextEditingController,
+//         // #### fully working validator #### //
+//         // #### #### //
+//         validator: (value) {
+//           final phoneExp = RegExp(r'^\+?1?\d{9,15}$');
+//           // print("vvvvvvvvvvvvvvvvvvvvvvvv${value.runtimeType}");
+//           if (value == null || value.isEmpty) {
+//             return 'Please enter a phone number';
+//           }
 
-          if (value.length < 9) {
-            return 'Password must be at least 9 characters long';
-          }
+//           if (value.length < 9) {
+//             return 'Password must be at least 9 characters long';
+//           }
 
-          if (!phoneExp.hasMatch(value)) {
-            return 'Please enter a trueee phone number';
-          }
-          return null;
-        },
-        decoration: InputDecoration(
-          // hintText: AppLocalizations.of(context)!.phoneNum,
-          hintText: "phoneNum",
-          hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                // color: AppColors.greyColor,
-                height: .8,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-          border: InputBorder.none,
-          contentPadding: EdgeInsetsDirectional.symmetric(
-            horizontal: 20,
-          ),
-        ),
-      ),
-    );
-  }
-}
+//           if (!phoneExp.hasMatch(value)) {
+//             return 'Please enter a trueee phone number';
+//           }
+//           return null;
+//         },
+//         decoration: InputDecoration(
+//           // hintText: AppLocalizations.of(context)!.phoneNum,
+//           hintText: "phoneNum",
+//           hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+//                 // color: AppColors.greyColor,
+//                 height: .8,
+//                 fontSize: 16,
+//                 fontWeight: FontWeight.w500,
+//               ),
+//           border: InputBorder.none,
+//           contentPadding: EdgeInsetsDirectional.symmetric(
+//             horizontal: 20,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class _UserNameArbFormFeild extends StatelessWidget {
-  const _UserNameArbFormFeild({
-    super.key,
-  });
+// class _UserNameArbFormFeild extends StatelessWidget {
+//   const _UserNameArbFormFeild({
+//     super.key,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // user name feild
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            50,
-          ),
-          // boxShadow: AppConstants.theLightBoxShdow,
-          border: AppConstants.customBorderOnePixel,
-          color: Colors.white),
-      child: FormBuilderTextField(
-        // name: AppLocalizations.of(context)!.full_arabic_name,
-        name: "full arabic name",
-        keyboardType: TextInputType.name,
-        style: _customLocalTextStyle,
-        controller: signUPArbUserNameTextEditingContorller,
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       // user name feild
+//       decoration: BoxDecoration(
+//           borderRadius: BorderRadius.circular(
+//             50,
+//           ),
+//           // boxShadow: AppConstants.theLightBoxShdow,
+//           border: AppConstants.customBorderOnePixel,
+//           color: Colors.white),
+//       child: FormBuilderTextField(
+//         // name: AppLocalizations.of(context)!.full_arabic_name,
+//         name: "full arabic name",
+//         keyboardType: TextInputType.name,
+//         style: _customLocalTextStyle,
+//         controller: signUPArbUserNameTextEditingContorller,
 
-        // #### fully working validator #### //
-        // #### #### //
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return 'Please enter a valid name';
-          }
+//         // #### fully working validator #### //
+//         // #### #### //
+//         validator: (value) {
+//           if (value == null || value.isEmpty) {
+//             return 'Please enter a valid name';
+//           }
 
-          if (value.length < 3) {
-            return 'the name must be at least 3 characters long';
-          }
+//           if (value.length < 3) {
+//             return 'the name must be at least 3 characters long';
+//           }
 
-          return null;
-        },
-        decoration: InputDecoration(
-          // hintText: AppLocalizations.of(context)!.full_arabic_name,
-          hintText: "full arabic name",
-          hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                // color: AppColors.greyColor,
-                height: .8,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-          border: InputBorder.none,
-          contentPadding: EdgeInsetsDirectional.symmetric(
-            horizontal: 20,
-          ),
-        ),
-      ),
-    );
-  }
-}
+//           return null;
+//         },
+//         decoration: InputDecoration(
+//           // hintText: AppLocalizations.of(context)!.full_arabic_name,
+//           hintText: "full arabic name",
+//           hintStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+//                 // color: AppColors.greyColor,
+//                 height: .8,
+//                 fontSize: 16,
+//                 fontWeight: FontWeight.w500,
+//               ),
+//           border: InputBorder.none,
+//           contentPadding: EdgeInsetsDirectional.symmetric(
+//             horizontal: 20,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class _UserNameEngFormFeild extends StatelessWidget {
   const _UserNameEngFormFeild({

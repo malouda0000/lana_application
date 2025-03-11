@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:eloro_shop_uae/core/constants/app_constants.dart';
+import 'package:eloro_shop_uae/main.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,16 +14,16 @@ class CacheHelper {
   // String userLang ='';
 
   static init() async {
-    _sharedPreferences = await SharedPreferences.getInstance();
-    // globalCachedUserToken = await getData(key: AppConstants.cachedUserToken);
-    // globalCachedUserLang = await getData(key: AppConstants.cachedUserLang);
-    // globalCachedArabicUserName =
-    //     await getData(key: AppConstants.cachedArabicUserName);
-    // globalCachedEnglishUserName =
-    //     await getData(key: AppConstants.cachedEnglishUserName);
-    // globalCachedUserID = await getData(key: AppConstants.cachedUserID);
-    // globalCachedUserPhoneNum =
-    //     await getData(key: AppConstants.cachedUserPhonNum);
+    // _sharedPreferences = await SharedPreferences.getInstance();
+    globalCachedUserToken = await getSecureData(key: AppConstants.cachedUserToken);
+    globalCachedUserLang = await getSecureData(key: AppConstants.cachedUserLang);
+    globalCachedArabicUserName =
+        await getSecureData(key: AppConstants.cachedArabicUserName);
+    globalCachedEnglishUserName =
+        await getSecureData(key: AppConstants.cachedEnglishUserName);
+    globalCachedUserID = await getSecureData(key: AppConstants.cachedUserID);
+    globalCachedUserPhoneNum =
+        await getSecureData(key: AppConstants.cachedUserPhonNum);
 
     // print("uuuuuuuuuuuuuuuuuuuuuuuuuuuuu :${globalUserToken}");
 
