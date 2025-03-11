@@ -1,9 +1,13 @@
 import 'package:eloro_shop_uae/core/constants/app_constants.dart';
 import 'package:eloro_shop_uae/core/func/hash_color_converter.dart';
+import 'package:eloro_shop_uae/core/func/nav_func.dart';
+import 'package:eloro_shop_uae/core/helpers/cache_helper.dart';
 import 'package:eloro_shop_uae/core/helpers/user_expernce_helper.dart';
+import 'package:eloro_shop_uae/view/Auth/login/login_screen.dart';
 import 'package:eloro_shop_uae/view/home/bloc/home_bloc/home_bloc.dart';
 import 'package:eloro_shop_uae/view/home/order/order_screen.dart';
 import 'package:eloro_shop_uae/view/home/show_order/show_order_screen.dart';
+import 'package:eloro_shop_uae/view/shared/widgets/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,26 +42,31 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text(
           "Lana Care UAE",
           style: TextStyle(
-            color: AppColors.darkBgColor,
+            // color: AppColors.darkBgColor,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
         ),
         actions: [
           IconButton(
-              onPressed: () {
-                UserExperinceHelper().showCustomDialog(
+              onPressed: () async {
+                await UserExperinceHelper().showCustomDialog(
                     theContext: context,
                     // dialogContent: AppLocalizations.of(context)!.userAgrement,
                     dialogContent: "sign out",
                     confirmButtonTitle: "ok",
                     onConfirm: () async {
                       await FirebaseAuth.instance.signOut();
+                      await CacheHelper.removeAllSecureData();
+                      navigateToWithReplacement(context, LogInScreen());
+
+                      customAppToast(message: "sign out sucessfully");
                     });
               },
               icon: Icon(
                 Icons.logout_rounded,
-                color: Colors.red,
+                color: Colors.white,
               ))
         ],
       ),
