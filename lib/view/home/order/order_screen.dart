@@ -16,37 +16,43 @@ class OrderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        AppConstants.emptySpaceFifteenPixl,
-        AppConstants.emptySpaceFifteenPixl,
-        AuthCustomIcon(),
-        AppConstants.emptySpaceFifteenPixl,
-        AppConstants.emptySpaceFifteenPixl,
-        Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: AppConstants.theDefBaddingFifteenPixl),
-          child: Form(
-              key: _reserveFormKey,
-              child: Column(
-                children: [
-                  _PatientNameFeild(),
-                  AppConstants.emptySpaceFifteenPixl,
-                  _PatientAgeFeild(),
-                ],
-              )),
+    return SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            AppConstants.emptySpaceFifteenPixl,
+            AppConstants.emptySpaceFifteenPixl,
+            AuthCustomIcon(),
+            AppConstants.emptySpaceFifteenPixl,
+            AppConstants.emptySpaceFifteenPixl,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppConstants.theDefBaddingFifteenPixl),
+              child: Form(
+                  key: _reserveFormKey,
+                  child: Column(
+                    children: [
+                      _PatientNameFeild(),
+                      AppConstants.emptySpaceFifteenPixl,
+                      _PatientAgeFeild(),
+                    ],
+                  )),
+            ),
+            Spacer(),
+            AppConstants.emptySpaceFifteenPixl,
+            AppConstants.emptySpaceFifteenPixl,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: AppConstants.theDefBaddingFifteenPixl),
+              child: _ConfirmCustomButton(),
+            ),
+            AppConstants.emptySpaceFifteenPixl,
+            AppConstants.emptySpaceFifteenPixl,
+          ],
         ),
-        Spacer(),
-        AppConstants.emptySpaceFifteenPixl,
-        AppConstants.emptySpaceFifteenPixl,
-        Padding(
-          padding: const EdgeInsets.symmetric(
-              horizontal: AppConstants.theDefBaddingFifteenPixl),
-          child: _ConfirmCustomButton(),
-        ),
-        AppConstants.emptySpaceFifteenPixl,
-        AppConstants.emptySpaceFifteenPixl,
-      ],
+      ),
     );
   }
 }
