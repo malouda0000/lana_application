@@ -423,7 +423,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         // TODO: implement listener
 
                         if (state is AuthSuccessStateSignUp) {
-                          customAppToast(message: "successs auth}");
+                          customAppToast(message: "successs signup");
                           navigateToWithReplacement(
                             context,
                             const HomeScreen(),

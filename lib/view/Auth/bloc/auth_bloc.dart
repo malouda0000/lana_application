@@ -196,96 +196,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       emit(AuthLoadingStateSignIn());
 
       if (event is AuthLogInEvent) {
-        // emit(AuthLoadingStateSignIn());
-
-        // Check for internet connectivity
-        // bool isConnected =
-        //     await InternetConnectionChecker.createInstance().hasConnection;
-        // if (!isConnected) {
-        //   UserExperinceHelper()
-        //       .showNetorkCheckerDialog(theContext: event.theContext);
-        //   emit(AuthErrorStateSignIn(errorMessage: "No Internet Connection"));
-        //   return;
-        // }
-
-        // Validate the form
-        // if (!signInFormKey.currentState!.validate()) {
-        //   // setState(() {
-        //   //   _autoValidate = AutovalidateMode.always;
-        //   // });
-
-        //   emit(AuthErrorStateSignIn(errorMessage: "Invalid form inputs"));
-        //   return;
-        // }
-
-        // try {
-        //   // Make the login request
-        //   // Response logInResponse = await DioHelper.login(
-        //   //   email: signInUserEmailTextEditingController.text,
-        //   //   password: signInPasswordTextEditingController.text,
-        //   // );
-        //   // if (logInResponse.statusCode == 200) {
-        //   //   ///
-        //   //   ///
-        //   //   ///
-        //   //   ///
-        //   //   ///
-
-        //   //   SignInModel signInModel = SignInModel.fromJson(logInResponse.data);
-
-        //   //   if (signInModel.message == "Login successful") {
-        //   //     final String tooooken = signInModel.accessToken.toString();
-        //   //     // print("ttttttttttttttttttttttttttttttttttttttttttttt $tooooken");
-        //   //     if (tooooken.isNotEmpty) {
-        //   //       await _cashUserData(
-        //   //         token: tooooken,
-        //   //         arabicUserName: '',
-        //   //         englishUserName: '',
-        //   //         userID: '',
-        //   //         userEmail: '',
-        //   //         userPhoneNumber: '',
-        //   //       );
-        //   //       await DioHelper.init();
-
-        //   //       emit(AuthSuccessStateSignIn());
-        //   //     } else {
-        //   //       emit(AuthErrorStateSignIn(
-        //   //           errorMessage: "Token not found in response"));
-        //   //     }
-        //   //   } else {
-        //   //     emit(AuthErrorStateSignIn(
-        //   //         errorMessage: signInModel.message ?? "Unknown error"));
-        //   //   }
-
-        //   //   // emit(AuthSuccessStateSignIn());
-        //   // } else {
-        //   //   // Handle unexpected HTTP status codes
-        //   //   emit(AuthErrorStateSignIn(
-        //   //     errorMessage: "Unexpected error: ${logInResponse.statusCode}",
-        //   //   ));
-        //   // }
-
-        //   ///
-        //   ///
-        //   ///
-        //   ///
-
-        // } catch (e) {
-        //   // Handle error response or exceptions
-        //   if (e is DioException && e.response != null) {
-        //     // Parse error response
-        //     SignInErrorModel errorResponse =
-        //         SignInErrorModel.fromJson(e.response!.data);
-
-        //     emit(AuthErrorStateSignIn(
-        //       errorMessage: errorResponse.message,
-        //     ));
-        //   } else {
-        //     emit(AuthErrorStateSignIn(
-        //       errorMessage: "An error occurred: ${e.toString()}",
-        //     ));
-        //   }
-        // }
 
         try {
           final credential =
@@ -294,22 +204,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             password: signInPasswordTextEditingController.text.trim(),
           );
 
-          if (credential.user?.email != null &&
-              credential.credential?.accessToken != null) {
-            await _cashUserData(
-              token: credential.credential!.accessToken.toString(),
-              userEmail: credential.user!.email,
-            );
+          // if (credential.user?.email != null &&
+          //     credential.credential?.accessToken != null) {
+          //   await _cashUserData(
+          //     token: credential.credential!.accessToken.toString(),
+          //     userEmail: credential.user!.email,
+          //   );
 
-            emit(AuthSuccessStateSignIn());
-          }
+          //   emit(AuthSuccessStateSignIn());
+          // }
 
           FirebaseAuth auth = FirebaseAuth.instance;
           User? theUser = auth.currentUser;
 
           if (theUser != null) {
             String? theToken = await theUser.getIdToken();
-            await _cashUserData(token: theToken?? "");
+            await _cashUserData(token: theToken ?? "");
             emit(AuthSuccessStateSignIn());
 
             print("User is logged in: ${theUser.email}");
@@ -331,25 +241,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthLoadingStateSignIn());
 
         // Check for internet connectivity
-        bool isConnected =
-            await InternetConnectionChecker.createInstance().hasConnection;
-        if (!isConnected) {
-          UserExperinceHelper()
-              .showNetorkCheckerDialog(theContext: event.theContext);
-          emit(AuthErrorStateSignIn(errorMessage: "No Internet Connection"));
-          return;
-        }
+        // bool isConnected =
+        //     await InternetConnectionChecker.createInstance().hasConnection;
+        // if (!isConnected) {
+        //   UserExperinceHelper()
+        //       .showNetorkCheckerDialog(theContext: event.theContext);
+        //   emit(AuthErrorStateSignIn(errorMessage: "No Internet Connection"));
+        //   return;
+        // }
 
         try {
           UserCredential newUserCredential = await signInWithGoogle();
           if (newUserCredential != null) {
-            _cashUserData(
-              token: newUserCredential.credential!.accessToken!,
-              englishUserName: newUserCredential.additionalUserInfo!.username,
-              userEmail: newUserCredential.additionalUserInfo!.providerId,
-            );
+            // _cashUserData(
+            //   token: newUserCredential.credential!.accessToken!,
+            //   englishUserName: newUserCredential.additionalUserInfo!.username,
+            //   userEmail: newUserCredential.additionalUserInfo!.providerId,
+            // );
             print(
                 "aaaaaaaaaa-a=a=a=a=a=a=${newUserCredential.credential!.accessToken!}");
+          }
+
+// the new logic for caching
+          FirebaseAuth auth = FirebaseAuth.instance;
+          User? theUser = auth.currentUser;
+
+          if (theUser != null) {
+            String? theToken = await theUser.getIdToken();
+            await _cashUserData(token: theToken ?? "");
+            emit(AuthSuccessStateSignUp());
+
+            print("User is logged in: ${theUser.email}");
+          } else {
+            print("No user is signed in");
           }
         } catch (e) {
           // Handle error response or exceptions
@@ -383,23 +307,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthLoadingStateSignUp());
 
         // Check for network
-        bool result =
-            await InternetConnectionChecker.createInstance().hasConnection;
+        // bool result =
+        //     await InternetConnectionChecker.createInstance().hasConnection;
 
-        if (!result) {
-          // Emit network error state
-          emit(AuthErrorStateSignUp(errorMessage: 'No Internet connection'));
-          UserExperinceHelper()
-              .showNetorkCheckerDialog(theContext: event.theContext);
-          return;
-        }
+        // if (!result) {
+        //   // Emit network error state
+        //   emit(AuthErrorStateSignUp(errorMessage: 'No Internet connection'));
+        //   UserExperinceHelper()
+        //       .showNetorkCheckerDialog(theContext: event.theContext);
+        //   return;
+        // }
 
         // print(
         //     "nameeeeeeeeeeee ${signUPEngUserNameTextEditingContorller.text}");
         // try {
         // Send the sign-up request
         // Response signupResponse = await DioHelper.signUp(
-        //   arabicName: signUPArbUserNameTextEditingContorller.text,
+        //   arabicName: signUPArbUserNameTextEditingContorller.text.trim(),
         //   englishName: signUPEngUserNameTextEditingContorller.text,
         //   email: signUpUserEmailTextEditingController.text,
         //   mobile: signUpUserPhonNumTextEditingController.text,
@@ -448,19 +372,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 // #### firebase sing up #### //
 
         try {
+
+          if (signUpUserEmailTextEditingController.text.trim().isEmpty) {
+  print("Email field cannot be emmmmmmmmmmpty");
+  return;
+}
+
           final credential =
               await FirebaseAuth.instance.createUserWithEmailAndPassword(
-            email: signUPEngUserNameTextEditingContorller.text,
-            password: signUpPasswordTextEditingController.text,
+            email: signUPEngUserNameTextEditingContorller.text.trim(),
+            password: signUpPasswordTextEditingController.text.trim(),
           );
 
-          if (credential.user?.email != null &&
-              credential.credential?.accessToken != null) {
-            await _cashUserData(
-              token: credential.credential!.accessToken.toString(),
-              userEmail: credential.user!.email,
-            );
-            emit(AuthSuccessStateSignIn());
+          // if (credential.user?.email != null &&
+          //     credential.credential?.accessToken != null) {
+          //   await _cashUserData(
+          //     token: credential.credential!.accessToken.toString(),
+          //     userEmail: credential.user!.email,
+          //   );
+          //   emit(AuthSuccessStateSignIn());
+          // }
+
+// the new logic for caching
+          FirebaseAuth auth = FirebaseAuth.instance;
+          User? theUser = auth.currentUser;
+
+          if (theUser != null) {
+            String? theToken = await theUser.getIdToken();
+            await _cashUserData(token: theToken ?? "");
+            emit(AuthSuccessStateSignUp());
+
+            print("User is logged in: ${theUser.email}");
+          } else {
+            print("No user is signed in");
           }
         } on FirebaseAuthException catch (e) {
           if (e.code == 'weak-password') {

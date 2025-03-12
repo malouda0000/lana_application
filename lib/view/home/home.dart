@@ -27,11 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
     context.read<HomeBloc>().add(FetchOptions());
   }
 
-  // List<Widget> screens = [
-  //   OrderScreen(),
-  //   ShowOrderesScreen(),
-  // ];
-  // int _currentIndex = 0;
+  List<Widget> screens = [
+    OrderScreen(),
+    ShowOrderesScreen(),
+  ];
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -96,20 +96,20 @@ class _HomeScreenState extends State<HomeScreen> {
         //   },
         // ),
 
-        child: const SizedBox(),
-        //   child: screens[_currentIndex],
-        // ),
-        // bottomNavigationBar: BottomNavigationBar(
-        //     onTap: (value) => setState(() {
-        //           _currentIndex = value;
-        //         }),
-        //     currentIndex: _currentIndex,
-        //     items: [
-        //       BottomNavigationBarItem(
-        //           icon: Icon(Icons.home_rounded), label: "home"),
-        //       BottomNavigationBarItem(
-        //           icon: Icon(Icons.home_rounded), label: "list"),
-        //     ],
+        // child: const SizedBox(),
+          child: screens[_currentIndex],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+            onTap: (value) => setState(() {
+                  _currentIndex = value;
+                }),
+            currentIndex: _currentIndex,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home_rounded), label: "home"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home_rounded), label: "list"),
+            ],
       ),
     );
   }
