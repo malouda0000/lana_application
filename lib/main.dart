@@ -82,7 +82,7 @@ class MyApp extends StatelessWidget {
         ),
         home: globalCachedUserToken != null && globalCachedUserToken != ""
             ? const HomeScreen()
-            : const SignupScreen(),
+            : const LogInScreen(),
         // home: HomeScreen(),
       ),
     );

@@ -84,8 +84,8 @@ class _SignupScreenState extends State<SignupScreen> {
             const SizedBox(
               height: 20,
             ),
-            // _UserAggrementRow(context),
-            _userAggrementRow(context),
+            // _userAgreementRow(context),
+            _userAgreementRow(context),
             const SizedBox(
               height: 20,
             ),
@@ -120,7 +120,7 @@ class _SignupScreenState extends State<SignupScreen> {
         ));
   }
 
-  Row _userAggrementRow(BuildContext context) {
+  Row _userAgreementRow(BuildContext context) {
     return Row(
       // key: signUpKey,
       mainAxisAlignment: MainAxisAlignment.start,
