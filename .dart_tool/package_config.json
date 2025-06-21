@@ -248,6 +248,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_rating_bar",
+      "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/flutter_rating_bar-4.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "flutter_secure_storage",
       "rootUri": "file:///Users/hmmammohamedhamza/.pub-cache/hosted/pub.dev/flutter_secure_storage-9.2.4",
       "packageUri": "lib/",
@@ -698,7 +704,7 @@
       "languageVersion": "3.4"
     }
   ],
-  "generated": "2025-06-21T08:32:42.522495Z",
+  "generated": "2025-06-21T10:38:44.351840Z",
   "generator": "pub",
   "generatorVersion": "3.4.4",
   "flutterRoot": "file:///Users/hmmammohamedhamza/Developer/flutter",

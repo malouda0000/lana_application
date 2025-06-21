@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
         // BlocProvider<LocalizationBloc>(create: (context) => LocalizationBloc()),
       ],
       child: MaterialApp(
-        title: 'LANA Life Care',
+        title: 'Appers Store UAE',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

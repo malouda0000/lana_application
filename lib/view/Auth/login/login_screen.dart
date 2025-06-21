@@ -163,19 +163,12 @@ class _LoginBodyState extends State<_LoginBody> {
               //   height: 20,
               // ),
               _SignInButton(),
+              AppConstants.emptySpaceFifteenPixl,
               ElevatedButton(
                 onPressed: () {
-                  // context.read<ThemeBloc>().add(ToggleThemeEvent());
-                  FirebaseAuth auth = FirebaseAuth.instance;
-                  User? user = auth.currentUser;
-
-                  if (user != null) {
-                    print("User is logged in: ${user.email}");
-                  } else {
-                    print("No user is signed in");
-                  }
+                  navigateToWithReplacement(context, const HomeScreen());
                 },
-                child: const Text('Toggle Theme'),
+                child: const Text('temporary sign in'),
               ),
               SizedBox(
                 height: 30,

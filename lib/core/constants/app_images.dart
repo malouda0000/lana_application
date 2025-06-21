@@ -6,6 +6,7 @@ class AppImages {
   // static const logoDark = "assets/images/logo_dark.png";
   // static const logoDarkAll = "assets/images/logo_dark_all.png";
   static const logoLight = "assets/images/logo.jpg";
+  static const appersLogoLight = "assets/images/appers-logo-light.png";
   static const coverPng = "assets/images/cover.png";
 
   //

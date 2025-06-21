@@ -3,6 +3,8 @@ class AppImagesSvg {
   //   ####   //
   //  SVG Images  //
 
+
+  static const appersSvg = "assets/svg images/appers-logo-light.svg";
   static const homeSvg = "assets/svg images/home.svg";
   static const camera  = "assets/svg images/camera.svg";
   static const bell = "assets/svg images/bell.svg";

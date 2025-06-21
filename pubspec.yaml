@@ -54,6 +54,7 @@ dependencies:
   # form_builder_validators: #^9.1.0
   # loader_overlay: #^4.0.0
   loading_animation_widget: #^1.2.1
+  flutter_rating_bar: ^4.0.1
   # mobile_scanner: #^3.5.5
   # mobile_scanner: #^4.0.1
   # intl_phone_field: #^3.2.0

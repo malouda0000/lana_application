@@ -1,5 +1,6 @@
 import 'package:eloro_shop_uae/core/constants/app_constants.dart';
 import 'package:eloro_shop_uae/core/constants/app_images.dart';
+import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AuthCustomIcon extends StatelessWidget {
@@ -15,10 +16,11 @@ class AuthCustomIcon extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           decoration: const BoxDecoration(
             borderRadius: AppConstants.theNewBorderRadiusTenPX,
+            color: AppColors.darkBgColor,
           ),
           child: const Image(
             image: AssetImage(
-              AppImages.logoLight,
+              AppImages.appersLogoLight,
             ),
             height: 200, // Set the height
             width: 200, // Set the width
@@ -28,7 +30,7 @@ class AuthCustomIcon extends StatelessWidget {
         ),
         AppConstants.emptySpaceTenPixl,
         Text(
-          "LANA CARE",
+          "APPERS SHOP UAE",
           style:
               AppConstants.customTitleTextStyle.copyWith(color: Colors.black),
         ),
