@@ -1,8 +1,13 @@
 import 'package:eloro_shop_uae/core/constants/app_constants.dart';
+import 'package:eloro_shop_uae/core/func/nav_func.dart';
 import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:eloro_shop_uae/view/Auth/register/widgets/auth_custom_icon.dart';
+import 'package:eloro_shop_uae/view/shared/product_container.dart';
+import 'package:eloro_shop_uae/view/shared/screens/under_deve_screen.dart';
+import 'package:eloro_shop_uae/view/shared/search_container.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:flutter/widgets.dart'; // Unused if material.dart is imported
 
 TextEditingController patientNameTextEditingController =
     TextEditingController();
@@ -17,46 +22,218 @@ class OrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            AppConstants.emptySpaceFifteenPixl,
-            AppConstants.emptySpaceFifteenPixl,
-            AuthCustomIcon(),
-            AppConstants.emptySpaceFifteenPixl,
-            AppConstants.emptySpaceFifteenPixl,
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppConstants.theDefBaddingFifteenPixl),
-              child: Form(
-                  key: _reserveFormKey,
-                  child: Column(
-                    children: [
-                      _PatientNameFeild(),
-                      AppConstants.emptySpaceFifteenPixl,
-                      _PatientAgeFeild(),
-                    ],
-                  )),
-            ),
-            Spacer(),
-            AppConstants.emptySpaceFifteenPixl,
-            AppConstants.emptySpaceFifteenPixl,
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: AppConstants.theDefBaddingFifteenPixl),
-              child: _ConfirmCustomButton(),
-            ),
-            AppConstants.emptySpaceFifteenPixl,
-            AppConstants.emptySpaceFifteenPixl,
-          ],
-        ),
+      child: ListView(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.symmetric(
+            horizontal: AppConstants.theDefBaddingFifteenPixl),
+        children: [
+          AppConstants.emptySpaceFifteenPixl,
+          AppConstants.emptySpaceFifteenPixl,
+          AuthCustomIcon(),
+          AppConstants.emptySpaceFifteenPixl,
+          AppConstants.emptySpaceFifteenPixl,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: SearchContainer(),
+          ),
+          AppConstants.emptySpaceFifteenPixl,
+          AppConstants
+              .emptySpaceFifteenPixl, // Assuming this was what 'emptyGutter' was meant to be
+          Padding(
+            padding: const EdgeInsets.symmetric(// Kept original padding logic
+                /*horizontal: AppConstants.theDefBaddingFifteenPixl*/), // This inner padding on Form was likely the issue spot along with nested ListView
+            child: Form(
+                key: _reserveFormKey,
+                child: Column(
+                  children: [
+                    // _PatientNameFeild(),
+                    // AppConstants.emptySpaceFifteenPixl,
+                    // _PatientAgeFeild(),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Suppliers:",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.darkBgColor,
+                            fontFamily: "Cairo",
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    Column(
+                      // Using a Column to contain the list of products
+                      mainAxisSize: MainAxisSize
+                          .min, // Important to constrain the Column if not using Expanded
+                      children: [
+                        AppConstants.emptySpaceTenPixl,
+                        for (int i = 1; i < 20; i++)
+                          // ProductContainer(
+                          //   brandName: "zara",
+                          //   brandNetworkImage: null,
+                          //   isDisscountOrNew: true, // Kept original
+                          //   isFavourated: true,
+                          //   isDiscountOrNew: true,
+                          //   hasPaddings: true,
+                          //   productName: 't-shirt',
+                          //   categoryName: 'men',
+                          //   productDiscreption:
+                          //       'this is just a test for the product discription, and so on',
+                          //   oldPrice: '499',
+                          //   newPrice: '299',
+                          //   productNetworkImage: null,
+                          //   productRating: 4.5,
+                          //   onTapProductWidget: () {
+                          //     // navigateTo(context, ProductDetailsScreen());
+                          //   },
+                          //   onTapAddOrRemoveFav: () {
+                          //     navigateTo(context, UnderDevScreen());
+                          //   },
+                          // ),
+
+                          ProductContainer(),
+                      ],
+                    ),
+                  ],
+                )),
+          ),
+          Spacer(), // Kept as original
+          AppConstants.emptySpaceFifteenPixl,
+          AppConstants.emptySpaceFifteenPixl,
+          Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: AppConstants.theDefBaddingFifteenPixl),
+            child: _ConfirmCustomButton(),
+          ),
+          AppConstants.emptySpaceFifteenPixl,
+          AppConstants.emptySpaceFifteenPixl,
+        ],
       ),
     );
   }
 }
 
+class ProductContainer extends StatelessWidget {
+  const ProductContainer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0.0),
+      padding: const EdgeInsets.all(10.0), // Added padding for better spacing
+      height: 100, // Adjust height as needed
+      width: double.infinity,
+
+      decoration: BoxDecoration(
+        // border: Border.all(color: Colors.grey),
+
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 1,
+            offset: Offset(0, 1),
+          ),
+        ],
+      ),
+
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Product Category",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "Product supplier",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                // Text(
+                //   "Product rating",
+                //   style: TextStyle(
+                //     fontSize: 16,
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
+
+                RatingBar(
+                  onRatingUpdate: (rating) {
+                    // Handle rating update if needed
+                  },
+                  glow: false,
+                  ignoreGestures: true,
+                  initialRating: 4.5,
+                  itemSize: 25,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  ratingWidget: RatingWidget(
+                    full: Icon(
+                      Icons.star_rounded,
+                      color: AppColors.mainColor,
+                      size: 5,
+                    ),
+                    half: Icon(
+                      Icons.star_half_rounded,
+                      color: AppColors.mainColor,
+                      size: 5,
+                    ),
+                    empty: Icon(
+                      Icons.star_outline_rounded,
+                      color: AppColors.mainColor,
+                      size: 5,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "\$99.99",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.green,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ... rest of your original code for _PatientNameFeild, _PatientAgeFeild, _ConfirmCustomButton remains UNCHANGED ...
+// Assuming AppConstants looks something like this (for the code to run):
+class AppConstants {
+  static const SizedBox emptySpaceFifteenPixl = SizedBox(height: 15, width: 15);
+  static const SizedBox emptySpaceTenPixl = SizedBox(height: 10, width: 10);
+  static const double theDefBaddingFifteenPixl = 15.0;
+  static const Border customBorderOnePixel = Border(); // Placeholder
+  // ... other constants
+}
+
+// Keeping the classes exactly as they were, no internal changes:
 class _PatientNameFeild extends StatelessWidget {
   const _PatientNameFeild({
     super.key,
@@ -213,3 +390,5 @@ class _ConfirmCustomButton extends StatelessWidget {
     );
   }
 }
+
+// Assume AppColor

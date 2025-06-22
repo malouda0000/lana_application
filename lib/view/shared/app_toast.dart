@@ -1,16 +1,16 @@
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:select_shop/core/theme/colors.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:select_shop/core/theme/colors.dart';
 
-showToast({required String message}) {
-  Fluttertoast.showToast(
-    msg: message,
-    toastLength: Toast.LENGTH_LONG,
-    gravity: ToastGravity.BOTTOM,
-    timeInSecForIosWeb: 3,
-    // backgroundColor: AppColors.mainGreyColor,
-    backgroundColor: AppColors.mainColor,
-    textColor: AppColors.bgColor,
+// showToast({required String message}) {
+//   Fluttertoast.showToast(
+//     msg: message,
+//     toastLength: Toast.LENGTH_LONG,
+//     gravity: ToastGravity.BOTTOM,
+//     timeInSecForIosWeb: 3,
+//     // backgroundColor: AppColors.mainGreyColor,
+//     backgroundColor: AppColors.mainColor,
+//     textColor: AppColors.bgColor,
 
-    fontSize: 12,
-  );
-}
+//     fontSize: 12,
+//   );
+// }

@@ -1,10 +1,8 @@
+import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:select_shop/core/theme/colors.dart';
-import 'package:select_shop/generated/l10n.dart';
-import 'package:select_shop/view/Shared/under_develop_screen.dart';
 
 TextStyle _customLocalTextStyle = TextStyle(
-  color: AppColors.mainGreyColor,
+  color: AppColors.darkBgColor,
 );
 
 class SearchContainer extends StatelessWidget {
@@ -19,9 +17,10 @@ class SearchContainer extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-                blurRadius: 1,
-                offset: Offset(1, 1),
-                color: AppColors.grey2Color.withOpacity(.1), ), 
+              blurRadius: 1,
+              offset: Offset(1, 1),
+              color: AppColors.darkBgColor.withOpacity(.1),
+            ),
           ],
           borderRadius: BorderRadius.circular(6)),
       child: Row(
@@ -49,7 +48,7 @@ class SearchContainer extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
-                S.of(context).categorys,
+                "Suppliers",
               ),
             ),
           ),
@@ -105,16 +104,16 @@ class SearchContainer extends StatelessWidget {
           ),
           Icon(
             Icons.search,
-            color: AppColors.mainGreyColor.withOpacity(.3),
+            color: AppColors.darkBgColor.withOpacity(.3),
             size: 26,
           ),
 
           Text(
               style: _customLocalTextStyle.copyWith(
                   fontSize: 18,
-                  color: AppColors.mainGreyColor.withOpacity(.3),
+                  color: AppColors.darkBgColor.withOpacity(.3),
                   backgroundColor: Colors.white),
-              S.of(context).search),
+              "Search..."),
         ],
       ),
     );

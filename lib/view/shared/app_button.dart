@@ -1,5 +1,5 @@
+import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:select_shop/core/theme/colors.dart';
 
 class AppButton extends StatelessWidget {
   final String title;

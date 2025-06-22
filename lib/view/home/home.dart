@@ -5,7 +5,7 @@ import 'package:eloro_shop_uae/core/helpers/cache_helper.dart';
 import 'package:eloro_shop_uae/core/helpers/user_expernce_helper.dart';
 import 'package:eloro_shop_uae/view/Auth/login/login_screen.dart';
 import 'package:eloro_shop_uae/view/home/bloc/home_bloc/home_bloc.dart';
-import 'package:eloro_shop_uae/view/home/order/order_screen.dart';
+import 'package:eloro_shop_uae/view/home/order/order_screen.dart' as order_screen;
 import 'package:eloro_shop_uae/view/home/show_order/show_order_screen.dart';
 import 'package:eloro_shop_uae/view/shared/widgets/toast.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> screens = [
-    OrderScreen(),
+    order_screen.OrderScreen(),
     ShowOrderesScreen(),
   ];
   int _currentIndex = 0;
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.mainColor,
         centerTitle: true,
         title: const Text(
-          "Lana Care UAE",
+          "APPERS SHOP UAE",
           style: TextStyle(
             // color: AppColors.darkBgColor,
             color: Colors.white,
@@ -97,19 +97,19 @@ class _HomeScreenState extends State<HomeScreen> {
         // ),
 
         // child: const SizedBox(),
-          child: screens[_currentIndex],
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-            onTap: (value) => setState(() {
-                  _currentIndex = value;
-                }),
-            currentIndex: _currentIndex,
-            items: [
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home_rounded), label: "home"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.home_rounded), label: "list"),
-            ],
+        child: screens[_currentIndex],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (value) => setState(() {
+          _currentIndex = value;
+        }),
+        currentIndex: _currentIndex,
+        items: [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded), label: "home"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home_rounded), label: "list"),
+        ],
       ),
     );
   }
