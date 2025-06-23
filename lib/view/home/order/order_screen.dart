@@ -2,6 +2,7 @@ import 'package:eloro_shop_uae/core/constants/app_constants.dart';
 import 'package:eloro_shop_uae/core/func/nav_func.dart';
 import 'package:eloro_shop_uae/core/themes/app_colors.dart';
 import 'package:eloro_shop_uae/view/Auth/register/widgets/auth_custom_icon.dart';
+import 'package:eloro_shop_uae/view/products/products_screen.dart';
 import 'package:eloro_shop_uae/view/shared/product_container.dart';
 import 'package:eloro_shop_uae/view/shared/screens/under_deve_screen.dart';
 import 'package:eloro_shop_uae/view/shared/search_container.dart';
@@ -124,118 +125,129 @@ class ProductContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0.0),
-      padding: const EdgeInsets.all(10.0), // Added padding for better spacing
-      height: 130, // Adjust height as needed
-      width: double.infinity,
+    return InkWell(
+      onTap: () {
+        navigateTo(context, ProductsScreen());
+        // Navigator.of(context).push(
+        //   MaterialPageRoute(builder: (context) => ProductsScreen()),
+        // );
+      },
+      // onTapAddOrRemoveFav: () {
+      //   navigateTo(context, UnderDevScreen());
+      // },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0.0),
+        padding: const EdgeInsets.all(10.0), // Added padding for better spacing
+        height: 130, // Adjust height as needed
+        width: double.infinity,
 
-      decoration: BoxDecoration(
-        // border: Border.all(color: Colors.grey),
+        decoration: BoxDecoration(
+          // border: Border.all(color: Colors.grey),
 
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            spreadRadius: 1,
-            blurRadius: 1,
-            offset: Offset(0, 1),
-          ),
-        ],
-      ),
-
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Product Category",
-                  style: TextStyle(
-                    fontSize: 12,
-                    // fontWeight: FontWeight.bold,
-                    color: AppColors.darkBgColor,
-                  ),
-                ),
-                Text(
-                  "Product supplier",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                // Text(
-                //   "Product rating",
-                //   style: TextStyle(
-                //     fontSize: 16,
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-
-                RatingBar(
-                  onRatingUpdate: (rating) {
-                    // Handle rating update if needed
-                  },
-                  glow: false,
-                  ignoreGestures: true,
-                  initialRating: 4.5,
-                  itemSize: 25,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  ratingWidget: RatingWidget(
-                    full: Icon(
-                      Icons.star_rounded,
-                      color: AppColors.mainColor,
-                      size: 5,
-                    ),
-                    half: Icon(
-                      Icons.star_half_rounded,
-                      color: AppColors.mainColor,
-                      size: 5,
-                    ),
-                    empty: Icon(
-                      Icons.star_outline_rounded,
-                      color: AppColors.mainColor,
-                      size: 5,
-                    ),
-                  ),
-                ),
-
-                Text(
-                  "\$99.99",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.green,
-                  ),
-                ),
-              ],
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              spreadRadius: 1,
+              blurRadius: 1,
+              offset: Offset(0, 1),
             ),
-          ),
+          ],
+        ),
 
-          // Image.network(
-          //   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
-          //   width: 100,
-          //   height: 100,
-          //   fit: BoxFit.cover,
-          // ),
-          Container(
-            width: 100,
-            height: 100,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80'),
-                fit: BoxFit.cover,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Product Category",
+                    style: TextStyle(
+                      fontSize: 12,
+                      // fontWeight: FontWeight.bold,
+                      color: AppColors.darkBgColor,
+                    ),
+                  ),
+                  Text(
+                    "Product supplier",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // Text(
+                  //   "Product rating",
+                  //   style: TextStyle(
+                  //     fontSize: 16,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
+
+                  RatingBar(
+                    onRatingUpdate: (rating) {
+                      // Handle rating update if needed
+                    },
+                    glow: false,
+                    ignoreGestures: true,
+                    initialRating: 4.5,
+                    itemSize: 25,
+                    direction: Axis.horizontal,
+                    allowHalfRating: true,
+                    itemCount: 5,
+                    ratingWidget: RatingWidget(
+                      full: Icon(
+                        Icons.star_rounded,
+                        color: AppColors.mainColor,
+                        size: 5,
+                      ),
+                      half: Icon(
+                        Icons.star_half_rounded,
+                        color: AppColors.mainColor,
+                        size: 5,
+                      ),
+                      empty: Icon(
+                        Icons.star_outline_rounded,
+                        color: AppColors.mainColor,
+                        size: 5,
+                      ),
+                    ),
+                  ),
+
+                  Text(
+                    "\$99.99",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.green,
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+
+            // Image.network(
+            //   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+            //   width: 100,
+            //   height: 100,
+            //   fit: BoxFit.cover,
+            // ),
+            Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
