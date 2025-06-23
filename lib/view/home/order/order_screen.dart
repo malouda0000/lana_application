@@ -127,7 +127,7 @@ class ProductContainer extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0.0),
       padding: const EdgeInsets.all(10.0), // Added padding for better spacing
-      height: 100, // Adjust height as needed
+      height: 130, // Adjust height as needed
       width: double.infinity,
 
       decoration: BoxDecoration(
@@ -156,8 +156,9 @@ class ProductContainer extends StatelessWidget {
                 Text(
                   "Product Category",
                   style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    fontSize: 12,
+                    // fontWeight: FontWeight.bold,
+                    color: AppColors.darkBgColor,
                   ),
                 ),
                 Text(
@@ -204,16 +205,33 @@ class ProductContainer extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                Text(
+                  "\$99.99",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.green,
+                  ),
+                ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              "\$99.99",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.green,
+
+          // Image.network(
+          //   'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80',
+          //   width: 100,
+          //   height: 100,
+          //   fit: BoxFit.cover,
+          // ),
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                image: NetworkImage(
+                    'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80'),
+                fit: BoxFit.cover,
               ),
             ),
           ),
