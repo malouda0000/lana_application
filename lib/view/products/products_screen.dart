@@ -6,7 +6,7 @@ import 'package:eloro_shop_uae/main.dart';
 import 'package:eloro_shop_uae/view/shared/app_button.dart';
 import 'package:eloro_shop_uae/view/shared/widgets/toast.dart';
 import 'package:flutter/material.dart';
-
+// this is just commit for updating the code snippet
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
 
